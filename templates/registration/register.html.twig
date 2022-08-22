@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+{% block stylesheets %}
+<link href="{{ asset('assets/register.css')}}" rel="stylesheet" />
+{% endblock %}
+{% block body %}
+    <img src="{{ asset('./assets/images/logo.png') }}" id="logo">
+
+    <div class="container-register">
+        <div class="container-blur">
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <h1>Bienvenue :)</h1>
+            <h2>Veuillez vous enregistrer pour continuer</h2>
+
+    {{ form_start(registrationForm) }}
+            <div class="input1">
+                <img src="{{asset('./assets/images/email.png')}}"></img>
+        {{ form_row(registrationForm.email, {'attr': {'placeholder': 'Email Adress'}}) }}
+            </div>
+            <div class="input2">
+                <img src="{{asset('./assets/images/mdp.png')}}"></img>
+        {{ form_row(registrationForm.plainPassword, {'attr': {'placeholder': 'Password'}}) }}
+            </div>
+
+            <div class="agreeTerms">
+        {{ form_row(registrationForm.agreeTerms) }}
+            </div>
+            <div class="container-button">
+        <button type="submit" class="btn">Register</button>
+            </div>
+    {{ form_end(registrationForm) }}
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+

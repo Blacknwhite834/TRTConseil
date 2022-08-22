@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello WaitController!{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('assets/wait.css')}}" rel="stylesheet" />
+{% endblock %}
+
+{% block body %}
+
+    <img src="{{ asset('./assets/images/logo.png') }}" id="logo">
+
+<div class="example-wrapper">
+    <div class="container-blur">
+        <h1>Vérification</h1>
+        <h2>Veuillez patienter, un consultant vérifiera votre dossier...</h2>
+        <div class="container-clock">
+        <img src="{{ asset('./assets/images/clock.png') }}" id="clock"/>
+        </div>
+        <div class="container-button">
+            <a href="{{ path('app_login') }}">
+        <button>OK</button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

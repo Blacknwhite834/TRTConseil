@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ChooseController!{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('assets/choose.css')}}" rel="stylesheet" />
+{% endblock %}
+{% block body %}
+    <img src="{{ asset('./assets/images/logo.png') }}" id="logo">
+
+<div class="example-wrapper">
+    <div class="container-blur">
+        <h1>Vous êtes :</h1>
+        <div class="container-button">
+            <a href="{{ path('app_complete_profile_candidat') }}">
+        <button id="btn1">Candidat</button>
+            </a>
+        <p>ou</p>
+            <a href="{{ path('app_complete_profile_recruteur') }}">
+        <button>Recruteur</button>
+                </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

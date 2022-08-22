@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Annonce{% endblock %}
+
+{% block stylesheets%}
+    <link href="{{ asset('assets/homepage.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+        <div class="wrapper">
+            <div class="container-home">
+            {{ include('home_page_admin/index.html.twig') }}
+            </div>
+            <div class="container-annonce">
+                 <h1>Créer une nouvelle annonce</h1>
+
+                    {{ include('annonce/_form.html.twig') }}
+
+                 <a href="{{ path('app_annonce_index') }}">back to list</a>
+            </div>
+        </div>
+{% endblock %}

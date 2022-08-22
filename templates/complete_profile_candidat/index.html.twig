@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TRT Conseil{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('assets/complete_candidat.css')}}" rel="stylesheet" />
+{% endblock %}
+
+{% block body %}
+
+    <img src="{{ asset('./assets/images/logo.png') }}" id="logo">
+
+<div class="example-wrapper">
+    <div class="container-blur">
+        <h1>Compléter votre profil :</h1>
+        <div class="container-form">
+        {{ form_start(form) }}
+
+        {{ form_row(form.Nom, {'attr': {'placeholder': 'Nom'}}) }}
+        {{ form_row(form.Prenom, {'attr': {'placeholder': 'Prénom'}}) }}
+            <div class="container-cv">
+            {{ form_row(form.CV) }}
+            </div>
+            <div class="container-button">
+                <button type="submit" class="btn">Soumettre</button>
+            </div>
+        {{ form_end(form) }}
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}
