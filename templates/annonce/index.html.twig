@@ -29,7 +29,7 @@
                 <td>
                     <a href="{{ path('app_annonce_show', {'id': annonce.id}) }}">show</a>
                     <a href="{{ path('app_annonce_edit', {'id': annonce.id}) }}">Editer</a>
-                    <a href="{{ path('app_annonce_edit', {'id': annonce.id}) }}">Postuler</a>
+                    <a href="{{ path('app_candidature', {'id': annonce.id}) }}">Postuler</a>
                 </td>
             </tr>
         {% else %}

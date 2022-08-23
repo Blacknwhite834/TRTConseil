@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnnonceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AnnonceRepository::class)]
@@ -11,6 +13,9 @@ class Annonce
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column()]
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ProfileCandidat")]
+     **/
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -24,6 +29,15 @@ class Annonce
 
     #[ORM\Column]
     private ?bool $is_verified = false;
+
+    #[ORM\OneToMany(mappedBy: 'annonce', targetEntity: Candidature::class)]
+    private Collection $candidatures;
+
+    public function __construct()
+    {
+        $this->candidatures = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -77,4 +91,36 @@ class Annonce
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Candidature>
+     */
+    public function getCandidatures(): Collection
+    {
+        return $this->candidatures;
+    }
+
+    public function addCandidature(Candidature $candidature): self
+    {
+        if (!$this->candidatures->contains($candidature)) {
+            $this->candidatures[] = $candidature;
+            $candidature->setAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCandidature(Candidature $candidature): self
+    {
+        if ($this->candidatures->removeElement($candidature)) {
+            // set the owning side to null (unless already changed)
+            if ($candidature->getAnnonce() === $this) {
+                $candidature->setAnnonce(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

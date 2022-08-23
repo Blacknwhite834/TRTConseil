@@ -2,9 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Candidature;
+use App\Entity\ProfileCandidat;
 use App\Entity\Annonce;
 use App\Form\AnnonceType;
 use App\Repository\AnnonceRepository;
+use App\Repository\ProfileCandidatRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,17 +27,19 @@ class AnnonceController extends AbstractController
             return $this->render('annonce/index.html.twig', [
                 'annonces' => $annonceRepository->findBy(['is_verified' => true]),
             ]);
+
     }
 
     #[Route('/new', name: 'app_annonce_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, AnnonceRepository $annonceRepository): Response
+    public function new(Request $request, AnnonceRepository $annonceRepository, EntityManagerInterface $entityManager): Response
     {
         $annonce = new Annonce();
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $entityManager->persist($annonce);
+            $entityManager->flush();
             return $this->redirectToRoute('app_annonce_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -41,13 +50,18 @@ class AnnonceController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_annonce_show', methods: ['GET'])]
-    public function show(Annonce $annonce): Response
+    public function show(Annonce $annonce, ManagerRegistry $doctrine): Response
     {
+        $candidats = $doctrine->getRepository(Candidature::class);
+        $listCandidats = $candidats->findAll();
+
+
         if (!$annonce->getIsVerified()) {
             throw $this->createNotFoundException();
         }
         return $this->render('annonce/show.html.twig', [
             'annonce' => $annonce,
+            'candidats' => $listCandidats,
         ]);
     }
 
@@ -78,4 +92,6 @@ class AnnonceController extends AbstractController
 
         return $this->redirectToRoute('app_annonce_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
 }

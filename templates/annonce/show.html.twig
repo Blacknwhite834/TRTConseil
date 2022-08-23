@@ -23,6 +23,8 @@
                 <th>Description</th>
                 <td>{{ annonce.description }}</td>
             </tr>
+
+
         </tbody>
     </table>
 
@@ -31,4 +33,15 @@
     <a href="{{ path('app_annonce_edit', {'id': annonce.id}) }}">edit</a>
 
     {{ include('annonce/_delete_form.html.twig') }}
+
+    {% for candidats in candidats %}
+        <ul>
+            <li>
+                <a>{{ candidats.nom }}</a>
+                <a>{{ candidats.prenom }}</a>
+                <a>{{ candidats.cv }}</a>
+            </li>
+        </ul>
+    {% endfor %}
+
 {% endblock %}
