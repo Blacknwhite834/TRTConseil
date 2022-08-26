@@ -33,6 +33,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $is_verified = false;
 
+    #[ORM\Column]
+    private ?bool $is_approved = false;
+
+
+
 
     public function getId(): ?int
     {
@@ -115,5 +120,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getIsApproved(): ?bool
+    {
+        return $this->is_approved;
+    }
+
+    public function setIsApproved(bool $is_approved): self
+    {
+        $this->is_approved = $is_approved;
+
+        return $this;
+    }
+
+
+
 
 }

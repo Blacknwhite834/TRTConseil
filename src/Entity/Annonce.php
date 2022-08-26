@@ -37,8 +37,12 @@ class Annonce
     {
         $this->candidatures = new ArrayCollection();
     }
-
-
+/*
+    public function __toString(): string
+    {
+        return $this->candidatures;
+    }
+*/
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +125,8 @@ class Annonce
 
         return $this;
     }
+
+
 
 
 }

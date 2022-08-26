@@ -12,6 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,12 +21,15 @@ use Symfony\Config\DoctrineConfig;
 
 class CandidatureController extends AbstractController
 {
-    #[Route('/candidature', name: 'app_candidature', methods: ['GET' , 'POST'])]
+    #[Route('/candidature', name: 'app_candidature', methods: ['GET', 'POST'])]
     public function index(EntityManagerInterface $entityManager, ManagerRegistry $doctrine, Request $request, MailerInterface $mailer): Response
     {
+        if ($this->getUser()->getIsApproved() == false or $this->getUser()->isIsVerified() == false) {
+            throw $this->createAccessDeniedException('not approved');
+        }
         $candidature = new Candidature();
 
-        $candidatRepo = $doctrine->getRepository(ProfileCandidat::class, ); // access to the repository of ProfileCandidat
+        $candidatRepo = $doctrine->getRepository(ProfileCandidat::class,); // access to the repository of ProfileCandidat
         $candidatNom = $candidatRepo->findOneBy([
             'email_adress' => $this->getUser()->getEmail()
         ]);
@@ -33,8 +37,6 @@ class CandidatureController extends AbstractController
         $annonce = $entityManager->getRepository(Annonce::class)->findOneBy([
             'id' => $request->get('id')
         ]);
-
-
 
 
         //dd($candidatNom->getNom()); // display the name of the specific ProfileCandidat with the id
@@ -47,17 +49,19 @@ class CandidatureController extends AbstractController
         if ($candidature->getAnnonce() == $annonce->getId()) {
             throw $this->createNotFoundException();
         }*/
-
         $entityManager->persist($candidature);
         $entityManager->flush();
 
-        $email = (new Email())
-            ->from('mailer@example.com')
-            ->to($candidatNom->getEmailAdress())
-            ->subject('Vous avez un nouveau candidat !')
-            ->text('{$candidature->getNom()} {$candidature->getPrenom()} a postulé à votre annonce !');
-        $mailer->send($email);
+        if ($candidature->getIsVerified() == true) {
+            $email = (new Email())
+                ->from('mailer@example.com')
+                ->to($candidatNom->getEmailAdress())
+                ->subject('Vous avez un nouveau candidat !')
+                ->text('{$candidature->getNom()} {$candidature->getPrenom()} a postulé à votre annonce !');
+            $mailer->send($email);
+        }
 
         return $this->redirectToRoute('app_annonce_index', [], Response::HTTP_SEE_OTHER);
     }
+
 }

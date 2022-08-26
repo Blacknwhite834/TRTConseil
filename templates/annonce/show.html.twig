@@ -33,7 +33,7 @@
     <a href="{{ path('app_annonce_edit', {'id': annonce.id}) }}">edit</a>
 
     {{ include('annonce/_delete_form.html.twig') }}
-
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECRUTEUR') or is_granted('ROLE_RECRUTEUR')%}
     {% for candidats in candidats %}
         <ul>
             <li>
@@ -43,5 +43,5 @@
             </li>
         </ul>
     {% endfor %}
-
+    {% endif %}
 {% endblock %}

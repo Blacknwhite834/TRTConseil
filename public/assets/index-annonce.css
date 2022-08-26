@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
+html {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+#annonce-title {
+    font-weight: bold;
+    font-size: 23px;
+    line-height: 0;
+    margin-bottom: -18px;
+}
+
+tbody {
+    display: flex;
+    gap: 50px;
+    height: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+#annonce-lieu {
+    color: #BFBFBF;
+    font-size: 18px;
+    margin-bottom: -10px;
+}
+
+#annonce-description {
+    font-weight: 300;
+    font-size: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+
+.btn {
+    display: inline-block;
+    width: 110px;
+    height: 35px;
+    color: white;
+    list-style: none;
+    text-decoration: none;
+    background: #4063EC;
+    border-radius: 93px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 400;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    line-height: 1.5em;
+}
+
+#btn-1 {
+    background: #ffffff;
+    color: black;
+    text-align: center;
+
+}
+
+#btn-1:hover {
+    background: grey;
+    color: white;
+}
+
+#btn-2 {
+    background: grey;
+}
+
+#btn-2:hover {
+    background: #363636;
+
+}
+
+#btn-3:hover {
+    background: #0f3ff6;
+}
+
+.annonce {
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+
+}
+
+.annonce td {
+    display: block;
+    width: 85%;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+tr.annonce {
+    border-radius: 48px;
+    width: 433px;
+    height: auto;
+    margin: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.container-annonces h1 {
+    font-size: 60px;
+
+    margin-left: 90px;
+    margin-top: -90px;
+   text-decoration: underline 3px;
+    text-decoration-color: #0f3ff6;
+
+}
+
+
+
+
+

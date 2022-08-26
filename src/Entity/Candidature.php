@@ -28,9 +28,8 @@ class Candidature
     #[ORM\JoinColumn(nullable: false)]
     private ?Annonce $annonce = null;
 
-
-
-
+    #[ORM\Column]
+    private ?bool $is_verified = false;
 
     public function getId(): ?int
     {
@@ -78,6 +77,8 @@ class Candidature
         return $this->annonce;
     }
 
+
+
     public function setAnnonce(?Annonce $annonce): self
     {
         $this->annonce = $annonce;
@@ -85,6 +86,18 @@ class Candidature
         return $this;
     }
 
+
+    public function getIsVerified(): ?bool
+    {
+        return $this->is_verified;
+    }
+
+    public function setIsVerified(bool $is_verified): self
+    {
+        $this->is_verified = $is_verified;
+
+        return $this;
+    }
 
 
 }

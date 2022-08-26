@@ -18,6 +18,9 @@ class CompleteProfileCandidatController extends AbstractController
     #[Route('/complete/profile/candidat', name: 'app_complete_profile_candidat')]
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
+        if ($this->getUser()->isIsVerified() == false) {
+        throw $this->createAccessDeniedException('not approved');
+        }
         $profile = new ProfileCandidat();
         $form = $this->createForm(CompleteCandidatType::class, $profile);
         $form->handleRequest($request);
@@ -30,6 +33,7 @@ class CompleteProfileCandidatController extends AbstractController
                 $this->getParameter('upload_directory'),
                 $fileName);
             $profile->setCV($fileName);
+            $this->getUser()->setRoles(['ROLE_CANDIDAT']);
             $entityManager->persist($profile);
             $entityManager->flush();
             return $this->redirectToRoute('app_home_page');

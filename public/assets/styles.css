@@ -59,7 +59,11 @@ body {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
-
+#erreur {
+    color: red;
+    font-size: 15px;
+    margin-left: 45px;
+}
 
 .container-blur h1 {
     font-size: 85px;
@@ -178,6 +182,8 @@ input[type=password]:focus {
     outline: none;
 }
 
+
+
 @media only screen and (max-width: 1390px) {
     .container-left {
         display: none;
@@ -191,6 +197,11 @@ input[type=password]:focus {
 }
 
 @media only screen and (max-width: 1126px) {
+
+    #logo {
+        width: 200px;
+        height: 200px;
+    }
 
 
     .container-right {

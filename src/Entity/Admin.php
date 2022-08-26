@@ -32,6 +32,9 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
+    #[ORM\Column]
+    private ?bool $is_approved = true;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,7 +105,7 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function isVerified(): bool
+    public function isIsVerified(): bool
     {
         return $this->isVerified;
     }
@@ -110,6 +113,18 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getIsApproved(): ?bool
+    {
+        return $this->is_approved;
+    }
+
+    public function setIsApproved(bool $is_approved): self
+    {
+        $this->is_approved = $is_approved;
 
         return $this;
     }

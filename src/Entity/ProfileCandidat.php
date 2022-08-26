@@ -29,6 +29,7 @@ class ProfileCandidat
      */
     private ?string $email_adress = null;
 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -81,5 +82,6 @@ class ProfileCandidat
 
         return $this;
     }
+
 
 }

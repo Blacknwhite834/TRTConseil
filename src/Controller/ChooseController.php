@@ -11,6 +11,9 @@ class ChooseController extends AbstractController
     #[Route('/choose', name: 'app_choose')]
     public function index(): Response
     {
+        if ($this->getUser()->isIsVerified() == false) {
+            throw $this->createAccessDeniedException('not approved');
+        }
         return $this->render('choose/index.html.twig', [
             'controller_name' => 'ChooseController',
         ]);

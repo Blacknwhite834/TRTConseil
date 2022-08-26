@@ -5,7 +5,7 @@
 <link href="{{ asset('assets/register.css')}}" rel="stylesheet" />
 {% endblock %}
 {% block body %}
-    <img src="{{ asset('./assets/images/logo.png') }}" id="logo">
+    <img src="{{ asset('./assets/images/logo.png') }}" id="logo"/>
 
     <div class="container-register">
         <div class="container-blur">
@@ -31,8 +31,10 @@
             </div>
             <div class="container-button">
         <button type="submit" class="btn">Register</button>
+
             </div>
     {{ form_end(registrationForm) }}
+         <!--   <button id="login" class="btn"><a href="{{ path('app_logout')}}">Login</a></button> -->
         </div>
     </div>
 {% endblock %}

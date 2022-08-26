@@ -193,8 +193,14 @@ input[type=password]:focus {
     width: 100%;
 }
 
-#question {
+#login {
+    background: grey;
+}
 
+#login a {
+    text-decoration: none;
+    list-style: none;
+    color: white;
 }
 
 @media only screen and (max-width: 1390px) {
@@ -203,5 +209,13 @@ input[type=password]:focus {
         width: 100%;
         display: flex;
         justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 1126px) {
+
+    #logo {
+        width: 200px;
+        height: 200px;
     }
 }

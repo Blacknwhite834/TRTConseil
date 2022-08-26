@@ -21,9 +21,14 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 #[Route('/annonce')]
 class AnnonceController extends AbstractController
 {
+
     #[Route('/', name: 'app_annonce_index', methods: ['GET'])]
     public function index(AnnonceRepository $annonceRepository): Response
     {
+        if ($this->getUser()->getIsApproved() == false or $this->getUser()->isIsVerified() == false) {
+            throw $this->createAccessDeniedException('not approved');
+        }
+
             return $this->render('annonce/index.html.twig', [
                 'annonces' => $annonceRepository->findBy(['is_verified' => true]),
             ]);
@@ -33,6 +38,9 @@ class AnnonceController extends AbstractController
     #[Route('/new', name: 'app_annonce_new', methods: ['GET', 'POST'])]
     public function new(Request $request, AnnonceRepository $annonceRepository, EntityManagerInterface $entityManager): Response
     {
+        if ($this->getUser()->getIsApproved() == false or $this->getUser()->isIsVerified() == false) {
+            throw $this->createAccessDeniedException('not approved');
+        }
         $annonce = new Annonce();
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
@@ -52,6 +60,11 @@ class AnnonceController extends AbstractController
     #[Route('/{id}', name: 'app_annonce_show', methods: ['GET'])]
     public function show(Annonce $annonce, ManagerRegistry $doctrine): Response
     {
+        if ($this->getUser()->getIsApproved() == false or $this->getUser()->isIsVerified() == false) {
+            throw $this->createAccessDeniedException('not approved');
+        }
+
+
         $candidats = $doctrine->getRepository(Candidature::class);
         $listCandidats = $candidats->findAll();
 
@@ -68,6 +81,9 @@ class AnnonceController extends AbstractController
     #[Route('/{id}/edit', name: 'app_annonce_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Annonce $annonce, AnnonceRepository $annonceRepository): Response
     {
+        if ($this->getUser()->getIsApproved() == false or $this->getUser()->isIsVerified() == false) {
+            throw $this->createAccessDeniedException('not approved');
+        }
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
 
@@ -86,6 +102,9 @@ class AnnonceController extends AbstractController
     #[Route('/{id}', name: 'app_annonce_delete', methods: ['POST'])]
     public function delete(Request $request, Annonce $annonce, AnnonceRepository $annonceRepository): Response
     {
+        if ($this->getUser()->getIsApproved() == false or $this->getUser()->isIsVerified() == false) {
+            throw $this->createAccessDeniedException('not approved');
+        }
         if ($this->isCsrfTokenValid('delete'.$annonce->getId(), $request->request->get('_token'))) {
             $annonceRepository->remove($annonce, true);
         }

@@ -3,44 +3,39 @@
 {% block title %}Annonce index{% endblock %}
 {% block stylesheets%}
     <link href="{{ asset('assets/homepage.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/index-annonce.css') }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
     {{ include('home_page_admin/index.html.twig') }}
    <div class="container-annonces">
-    <h1>Annonce index</h1>
+    <h1>Annonces</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Lieu</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
+    <table>
         <tbody>
         {% for annonce in annonces %}
-            <tr>
-                <td>{{ annonce.id }}</td>
-                <td>{{ annonce.title }}</td>
-                <td>{{ annonce.lieu }}</td>
-                <td>{{ annonce.description }}</td>
+            <tr class="annonce">
+                <td id="annonce-title">{{ annonce.title }}</td>
+                <td id="annonce-lieu">{{ annonce.lieu }}</td>
+                <td id="annonce-description">{{ annonce.description }}</td>
                 <td>
-                    <a href="{{ path('app_annonce_show', {'id': annonce.id}) }}">show</a>
-                    <a href="{{ path('app_annonce_edit', {'id': annonce.id}) }}">Editer</a>
-                    <a href="{{ path('app_candidature', {'id': annonce.id}) }}">Postuler</a>
+
+                    <a href="{{ path('app_annonce_show', {'id': annonce.id}) }}" class="btn" id="btn-1">Voir</a>
+                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECRUTEUR') %}
+                    <a href="{{ path('app_annonce_edit', {'id': annonce.id}) }}" class="btn" id="btn-2">Editer</a>
+                    {% endif %}
+                    <a href="{{ path('app_candidature', {'id': annonce.id}) }}" class="btn" id="btn-3">Postuler</a>
                 </td>
             </tr>
+
         {% else %}
             <tr>
                 <td colspan="5">no records found</td>
             </tr>
         {% endfor %}
+
         </tbody>
     </table>
 
-    <a href="{{ path('app_annonce_new') }}">Créer une nouvelle annonce</a>
 
    </div>
 {% endblock %}

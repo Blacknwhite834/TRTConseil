@@ -26,8 +26,11 @@ class UserCrudController extends AbstractCrudController
         return [
             IdField::new('id'),
             TextField::new('Email'),
-            BooleanField::new('is_verified'),
+            BooleanField::new('is_verified')
+                ->setLabel('Verifié(email)'),
             ArrayField::new('roles'),
+            BooleanField::new('is_approved')
+                ->setLabel('Approuvée par le consultant'),
         ];
     }
 

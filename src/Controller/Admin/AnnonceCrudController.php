@@ -2,19 +2,18 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\ProfileCandidat;
+use App\Entity\Annonce;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use Symfony\Component\DomCrawler\Image;
 
-class ProfileCandidatCrudController extends AbstractCrudController
+class AnnonceCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return ProfileCandidat::class;
+        return Annonce::class;
     }
 
 
@@ -22,13 +21,11 @@ class ProfileCandidatCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id'),
-            TextField::new('nom'),
-            TextField::new('prenom'),
-            TextField::new('email_adress'),
-            ImageField::new('cv')
-                ->setBasePath('uploads')
-            ->setUploadDir('public/uploads')
-
+            TextField::new('title'),
+            TextEditorField::new('description'),
+            BooleanField::new('is_verified')
+                ->setHelp('Cochez cette case si l\'annonce est validée')
+                ->setLabel('Approuvée'),
         ];
     }
 

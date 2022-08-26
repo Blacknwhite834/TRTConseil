@@ -11,6 +11,7 @@ class WaitController extends AbstractController
     #[Route('/wait', name: 'app_wait')]
     public function index(): Response
     {
+
         return $this->render('wait/index.html.twig', [
             'controller_name' => 'WaitController',
         ]);
