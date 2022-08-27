@@ -20,7 +20,8 @@ class AnnonceCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
+            IdField::new('id')
+                ->onlyOnIndex(),
             TextField::new('title'),
             TextEditorField::new('description'),
             BooleanField::new('is_verified')

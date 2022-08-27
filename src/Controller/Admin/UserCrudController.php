@@ -24,7 +24,8 @@ class UserCrudController extends AbstractCrudController
     {
 
         return [
-            IdField::new('id'),
+            IdField::new('id')
+                ->onlyOnIndex(),
             TextField::new('Email'),
             BooleanField::new('is_verified')
                 ->setLabel('Verifié(email)'),

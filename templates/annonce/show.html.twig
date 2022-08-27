@@ -1,38 +1,41 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Annonce{% endblock %}
-
+{% block stylesheets%}
+    <link href="{{ asset('assets/homepage.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/show-annonce.css') }}" rel="stylesheet">
+{% endblock %}
 {% block body %}
+    {{ include('home_page_admin/index.html.twig') }}
+    <div class="container-annonce-show">
     <h1>Annonce</h1>
-
+        <div class="wrapper-lr">
+    <div class="wrapper-show">
     <table class="table">
         <tbody>
+
             <tr>
-                <th>Id</th>
-                <td>{{ annonce.id }}</td>
+                <td id="annonce-title">{{ annonce.title }}</td>
             </tr>
             <tr>
-                <th>Title</th>
-                <td>{{ annonce.title }}</td>
+                <td id="annonce-lieu">{{ annonce.lieu }}</td>
             </tr>
             <tr>
-                <th>Lieu</th>
-                <td>{{ annonce.lieu }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ annonce.description }}</td>
+                <td id="annonce-description">{{ annonce.description }}</td>
             </tr>
 
 
         </tbody>
     </table>
 
-    <a href="{{ path('app_annonce_index') }}">back to list</a>
-
-    <a href="{{ path('app_annonce_edit', {'id': annonce.id}) }}">edit</a>
+    <div class="links">
 
     {{ include('annonce/_delete_form.html.twig') }}
+        <a href="{{ path('app_annonce_edit', {'id': annonce.id}) }}" id="edit-btn">Editer</a>
+        <a href="{{ path('app_candidature', {'id': annonce.id}) }}" class="btn" id="btn-3">Postuler</a>
+    </div>
+    </div>
+        <div class="wrapper-right">
     {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECRUTEUR') or is_granted('ROLE_RECRUTEUR')%}
     {% for candidats in candidats %}
         <ul>
@@ -42,6 +45,10 @@
                 <a>{{ candidats.cv }}</a>
             </li>
         </ul>
+
     {% endfor %}
     {% endif %}
+        </div>
+        </div>
+    </div>
 {% endblock %}

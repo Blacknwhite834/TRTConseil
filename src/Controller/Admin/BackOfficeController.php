@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Annonce;
 use App\Entity\Candidature;
+use App\Entity\Consultant;
 use App\Entity\ProfileCandidat;
 use App\Entity\ProfileRecruteur;
 use App\Entity\User;
@@ -49,8 +50,9 @@ class BackOfficeController extends AbstractDashboardController
         yield MenuItem::linkToRoute('Home', 'fa fa-home', 'app_home_page'),
 
 
-        yield MenuItem::section('Consultant Dashboard :'),
+        yield MenuItem::section('Dashboard :'),
             yield MenuItem::linkToCrud('Users', 'fa-solid fa-user', User::class),
+            yield MenuItem::linkToCrud('Consultants', 'fa-solid fa-user', Consultant::class),
         yield MenuItem::linkToCrud('Candidats', 'fa-solid fa-user', ProfileCandidat::class),
         yield MenuItem::linkToCrud('Recruteurs', 'fa-solid fa-user', ProfileRecruteur::class),
             yield MenuItem::linkToCrud('Annonces', 'fa-solid fa-user', Annonce::class),

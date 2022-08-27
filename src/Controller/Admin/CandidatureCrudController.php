@@ -27,7 +27,8 @@ class CandidatureCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
+            IdField::new('id')
+                ->onlyOnIndex(),
             TextField::new('nom'),
             TextField::new('prenom'),
             TextField::new('cv'),
@@ -35,7 +36,7 @@ class CandidatureCrudController extends AbstractCrudController
             ->setLabel('Annonce associée')
             ->setFormTypeOption('choice_label', 'id'),
             BooleanField::new('is_verified')
-                ->setLabel('Approuvée')
+                ->setLabel('Approuvée par le consultant')
                 ->setHelp('Cochez cette case si la candidature est validée'),
         ];
     }

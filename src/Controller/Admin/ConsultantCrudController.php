@@ -2,17 +2,18 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\ProfileRecruteur;
+use App\Entity\Consultant;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class ProfileRecruteurCrudController extends AbstractCrudController
+class ConsultantCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return ProfileRecruteur::class;
+        return Consultant::class;
     }
 
 
@@ -21,9 +22,11 @@ class ProfileRecruteurCrudController extends AbstractCrudController
         return [
             IdField::new('id')
                 ->onlyOnIndex(),
-            TextField::new('nom'),
-            TextField::new('adresse'),
-            TextField::new('email_adress'),
+            TextField::new('email'),
+            TextField::new('password'),
+            ArrayField::new('roles'),
+            BooleanField::new('is_verified')
+                ->setLabel('Verifié(email)'),
         ];
     }
 

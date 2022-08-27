@@ -28,9 +28,11 @@ class AnnonceController extends AbstractController
         if ($this->getUser()->getIsApproved() == false or $this->getUser()->isIsVerified() == false) {
             throw $this->createAccessDeniedException('not approved');
         }
+        $email = $this->getUser()->getEmail();
 
             return $this->render('annonce/index.html.twig', [
                 'annonces' => $annonceRepository->findBy(['is_verified' => true]),
+                'email' => $email,
             ]);
 
     }
@@ -44,6 +46,7 @@ class AnnonceController extends AbstractController
         $annonce = new Annonce();
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
+        $email = $this->getUser()->getEmail();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($annonce);
@@ -54,6 +57,7 @@ class AnnonceController extends AbstractController
         return $this->renderForm('annonce/new.html.twig', [
             'annonce' => $annonce,
             'form' => $form,
+            'email' => $email,
         ]);
     }
 
@@ -64,6 +68,7 @@ class AnnonceController extends AbstractController
             throw $this->createAccessDeniedException('not approved');
         }
 
+        $email = $this->getUser()->getEmail();
 
         $candidats = $doctrine->getRepository(Candidature::class);
         $listCandidats = $candidats->findAll();
@@ -75,6 +80,7 @@ class AnnonceController extends AbstractController
         return $this->render('annonce/show.html.twig', [
             'annonce' => $annonce,
             'candidats' => $listCandidats,
+            'email' => $email,
         ]);
     }
 

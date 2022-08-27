@@ -22,6 +22,7 @@ class HomePageAdminController extends AbstractController
 
        $email = $this->getUser()->getEmail();
 
+
         return $this->render('home_page_admin/index.html.twig', [
             'controller_name' => 'HomePageAdminController',
             'email' => $email,
