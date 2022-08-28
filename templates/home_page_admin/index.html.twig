@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}TRT Conseil | Home{% endblock %}
 
 {% block stylesheets%}
     <link href="assets/homepage.css" rel="stylesheet">
 {% endblock %}
 {% block body %}
+    {% block homepage %}
     <header>
         <div class="profile">
             <div class="flex-profile">
@@ -37,5 +37,22 @@
                 <li><img src="{{ asset('assets/images/logout.png')}}" /><a href="{{ path('app_logout')}}">Logout</a></li>
             </ul>
         </div>
+    </div>
+        {% endblock %}
+    <div class="main-wrapper">
+            <div class="wrapper-left">
+
+            </div>
+
+            <div class="block-right">
+
+                    <div class="wrapper-1">
+
+                    </div>
+
+                    <div class="wrapper-2">
+
+                    </div>
+         </div>
     </div>
 {% endblock %}

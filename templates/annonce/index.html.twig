@@ -1,12 +1,15 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Annonce index{% endblock %}
 {% block stylesheets%}
     <link href="{{ asset('assets/homepage.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/index-annonce.css') }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
-    {{ include('home_page_admin/index.html.twig') }}
+
+    {{ block('homepage', 'home_page_admin/index.html.twig') }}
+
    <div class="container-annonces">
     <h1>Annonces</h1>
 

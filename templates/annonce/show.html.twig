@@ -6,7 +6,7 @@
     <link href="{{ asset('assets/show-annonce.css') }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
-    {{ include('home_page_admin/index.html.twig') }}
+    {{ block('homepage', 'home_page_admin/index.html.twig') }}
     <div class="container-annonce-show">
     <h1>Annonce</h1>
         <div class="wrapper-lr">
