@@ -21,13 +21,13 @@
         <img src="{{ asset('./assets/images/logo.png') }}" id="logo">
         <div class="navlinks">
             <ul>
-                <li><img src="{{ asset('assets/images/home.png')}}" /><a href="{{ path('app_home_page') }}">Home</a></li>
-                <li><img src="{{ asset('assets/images/annonces.png')}}" /><a href="{{  path('app_annonce_index')}}">Annonces</a></li>
+                <li {% if app.request.attributes.get('_route') == 'app_home_page' %} class="active" {% endif %}><img src="{{ asset('assets/images/home.png')}}" /><a href="{{ path('app_home_page') }}">Home</a></li>
+                <li {% if app.request.attributes.get('_route') == 'app_annonce_index' %} class="active" {% endif %}><img src="{{ asset('assets/images/annonces.png')}}" /><a href="{{  path('app_annonce_index')}}">Annonces</a></li>
                 {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECRUTEUR') %}
-                    <li><img src="{{ asset('assets/images/upload.png')}}" /><a href="{{ path('app_annonce_new') }}">Publier</a></li>
+                    <li {% if app.request.attributes.get('_route') == 'app_annonce_new' %} class="active" {% endif %}><img src="{{ asset('assets/images/upload.png')}}" /><a href="{{ path('app_annonce_new') }}">Publier</a></li>
                 {% endif %}
                 {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CONSULTANT') %}
-                    <li><img src="{{ asset('assets/images/back-office.png')}}" /><a href="{{ path('admin')}}">Back-office</a></li>
+                    <li {% if app.request.attributes.get('_route') == 'admin' %} class="active" {% endif %}><img src="{{ asset('assets/images/back-office.png')}}" /><a href="{{ path('admin')}}">Back-office</a></li>
                 {% endif %}
 
             </ul>
@@ -39,20 +39,65 @@
         </div>
     </div>
         {% endblock %}
+    <h1 id="title">Home</h1>
     <div class="main-wrapper">
-            <div class="wrapper-left">
 
+            <div class="wrapper-left">
+                <h1>Annonces</h1>
+                <table>
+                    <tbody>
+                    {% for annonce in annonces %}
+                        <tr class="annonce">
+                            <td id="annonce-title">{{ annonce.title }}</td>
+                            <td id="annonce-lieu">{{ annonce.lieu }}</td>
+                            <td id="annonce-description">{{ annonce.description }}</td>
+                            <td>
+
+                                <a href="{{ path('app_annonce_show', {'id': annonce.id}) }}" class="btn" id="btn-1">Voir</a>
+
+                            </td>
+                        </tr>
+
+                    {% else %}
+                        <tr>
+                            <td colspan="5">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <a href="{{ path('app_annonce_index') }}" id="btn-ann">Annonces</a>
             </div>
 
             <div class="block-right">
 
                     <div class="wrapper-1">
+                        <div class="flex-1">
+                            <h1>Annonces</h1>
+                        </div>
+                        <div class="flex-2">
+                            <h1>Candidatures</h1>
+                        </div>
+                        <div class="flex-3">
+                            <h1>Publier</h1>
+                        </div>
+                        <div class="flex-4">
+                            <h1>Back-office</h1>
+                        </div>
 
                     </div>
 
                     <div class="wrapper-2">
-
+                        <h1>TRT Conseil</h1>
+                        <p>TRT Conseil est là pour vous à chaque instant de votre vie professionnelle !</p>
+                        <div class="logo-flex">
+                        <img src="{{ asset('./assets/images/logo-2.png') }}" id="logo-2">
+                        </div>
                     </div>
          </div>
     </div>
+{% endblock %}
+
+{% block javascript %}
+ var btnContainer = document.getElementsByClassName("navlinks");
+var btns = btnContainer.getElementsByC
 {% endblock %}

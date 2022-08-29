@@ -8,6 +8,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
+use Symfony\Component\DomCrawler\Field\FileFormField;
 use Symfony\Component\DomCrawler\Image;
 
 class ProfileCandidatCrudController extends AbstractCrudController
@@ -27,8 +29,8 @@ class ProfileCandidatCrudController extends AbstractCrudController
             TextField::new('prenom'),
             TextField::new('email_adress'),
             ImageField::new('cv')
-                ->setBasePath('uploads')
-            ->setUploadDir('public/uploads')
+                ->setBasePath('uploads/images/')
+                ->setUploadDir('public/uploads/images/'),
 
         ];
     }

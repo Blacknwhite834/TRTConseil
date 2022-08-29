@@ -60,6 +60,26 @@ class AnnonceController extends AbstractController
             'email' => $email,
         ]);
     }
+    #[Route('/{id}/edit', name: 'app_annonce_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Annonce $annonce, AnnonceRepository $annonceRepository): Response
+    {
+        if ($this->getUser()->getIsApproved() == false or $this->getUser()->isIsVerified() == false) {
+            throw $this->createAccessDeniedException('not approved');
+        }
+        $form = $this->createForm(AnnonceType::class, $annonce);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $annonceRepository->add($annonce, true);
+
+            return $this->redirectToRoute('app_annonce_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('annonce/edit.html.twig', [
+            'annonce' => $annonce,
+            'form' => $form,
+        ]);
+    }
 
     #[Route('/{id}', name: 'app_annonce_show', methods: ['GET'])]
     public function show(Annonce $annonce, ManagerRegistry $doctrine): Response
@@ -84,26 +104,6 @@ class AnnonceController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_annonce_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Annonce $annonce, AnnonceRepository $annonceRepository): Response
-    {
-        if ($this->getUser()->getIsApproved() == false or $this->getUser()->isIsVerified() == false) {
-            throw $this->createAccessDeniedException('not approved');
-        }
-        $form = $this->createForm(AnnonceType::class, $annonce);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $annonceRepository->add($annonce, true);
-
-            return $this->redirectToRoute('app_annonce_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('annonce/edit.html.twig', [
-            'annonce' => $annonce,
-            'form' => $form,
-        ]);
-    }
 
     #[Route('/{id}', name: 'app_annonce_delete', methods: ['POST'])]
     public function delete(Request $request, Annonce $annonce, AnnonceRepository $annonceRepository): Response
