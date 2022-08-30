@@ -2,6 +2,11 @@
   "dependencies": {
     "@symfony/webpack-encore": "^3.1.0",
     "bootstrap-icons": "^1.9.1",
+    "core-js": "^3.25.0",
     "webpack-notifier": "^1.15.0"
+  },
+  "devDependencies": {
+    "@hotwired/stimulus": "^3.1.0",
+    "@symfony/stimulus-bridge": "^3.2.1"
   }
 }
