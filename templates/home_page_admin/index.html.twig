@@ -27,14 +27,14 @@
                     <li {% if app.request.attributes.get('_route') == 'app_annonce_new' %} class="active" {% endif %}><img src="{{ asset('assets/images/upload.png')}}" /><a href="{{ path('app_annonce_new') }}">Publier</a></li>
                 {% endif %}
                 {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CONSULTANT') %}
-                    <li {% if app.request.attributes.get('_route') == 'admin' %} class="active" {% endif %}><img src="{{ asset('assets/images/back-office.png')}}" /><a href="{{ path('admin')}}">Back-office</a></li>
+                    <li><img src="{{ asset('assets/images/back-office.png')}}" /><a href="{{ path('admin')}}">Back-office</a></li>
                 {% endif %}
 
             </ul>
         </div>
         <div class="logout">
             <ul>
-                <li><img src="{{ asset('assets/images/logout.png')}}" /><a href="{{ path('app_logout')}}">Logout</a></li>
+                <li><img src="{{ asset('assets/images/logout.png')}}" /><a href="{{ path('app_logout')}}">Log out</a></li>
             </ul>
         </div>
     </div>

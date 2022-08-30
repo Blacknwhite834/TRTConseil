@@ -29,7 +29,7 @@ body {
     height: 100%;
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
-    width: 330px;
+    width: 300px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -53,7 +53,7 @@ body {
 .sidenav li a {
     font-size: 20px;
     font-weight: 300;
-    color: #cbcbcb;
+    color: #ffffff;
     text-decoration: none;
     list-style: none;
     margin-left: 20px;
@@ -96,8 +96,33 @@ body {
 }
 
 .logout {
-    width: 100%;
-    margin-top: 350px;
+    margin-top: 330px;
+}
+
+.logout ul li {
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 70%;
+    border-radius: 20px;
+    height: 36px;
+    padding-top: 14px;
+    opacity: 0.8;
+}
+
+.logout ul li:hover {
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(117, 117, 117, 0.4);
+    width: 70%;
+    border-radius: 20px;
+    height: 36px;
+    padding-top: 15px;
+    opacity: 0.8;
+    transition: 0.9s;
+}
+
+.logout img {
+    width: 20px;
+    margin-left: 20px;
 }
 
 header {
@@ -158,7 +183,7 @@ header {
 
 .wrapper-left {
     width: 60%;
-    min-height: 100%;
+    max-height: 750px;
     height: auto;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
     border-radius: 48px;
@@ -206,8 +231,9 @@ header {
 
 .flex-1 {
     background: transparent linear-gradient(126deg, #58cb4b 0%, #67B9B9 49%, #096acb 100%) 0% 0% no-repeat padding-box;
-    color: black;
+    color: rgba(0, 0, 0, 0.44);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    opacity: 0.9;
 }
 
 .flex-2 {
@@ -215,6 +241,7 @@ header {
     backdrop-filter: blur(32px);
     -webkit-backdrop-filter: blur(32px);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    opacity: 0.9;
 }
 
 .flex-3 {
@@ -222,6 +249,7 @@ header {
     -webkit-backdrop-filter: blur(32px);
     background: transparent linear-gradient(114deg, #fdf200 0%, #9184bd 59%, #67027e 100%) 0% 0% no-repeat padding-box;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    opacity: 0.9;
 }
 
 .flex-4 {
@@ -229,6 +257,7 @@ header {
     backdrop-filter: blur(32px);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
     -webkit-backdrop-filter: blur(32px);
+    opacity: 0.9;
 }
 @-webkit-keyframes color-change-5x{0%{background:#19dcea}25%{background:#b22cff}50%{background:#ea2222}75%{background:#f5be10}100%{background:#3bd80d}}
 .flex-1:hover {
@@ -405,3 +434,51 @@ tr.annonce {
 
 }
 
+@media only screen and (max-width: 1712px) {
+
+    .wrapper-1 .flex-1, .wrapper-1 .flex-2, .wrapper-1 .flex-3, .wrapper-1 .flex-4{
+        width: 45%;
+        height: 50%;
+    }
+
+    #annonce-description {
+        font-size: 1.1em;
+    }
+}
+
+@media only screen and (max-width: 1561px) {
+    .main-wrapper {
+        height: 700px;
+    }
+}
+
+@media only screen and (max-width: 1155px) {
+
+
+    #annonce-title {
+        font-size: 1.2em;
+    }
+
+    #annonce-lieu {
+        font-size: 1em;
+    }
+
+    #annonce-description {
+        display: none;
+    }
+    .wrapper-left {
+        height: 73%;
+    }
+    #logo-2 {
+        display: none;
+    }
+    .wrapper-2 {
+        height: 20%;
+    }
+
+    .wrapper-2 h1 {
+        padding-top: 0px;
+    }
+
+
+}
