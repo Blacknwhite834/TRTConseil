@@ -67,10 +67,9 @@ body {
 
 .container-blur h1 {
     font-size: 85px;
-    color: white;
+    color: #ffffff;
     font-weight: 300;
     text-align: center;
-    margin-right: 40px;
     text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
 }
 
@@ -80,7 +79,6 @@ body {
     font-size: 23px;
     margin-bottom: 120px;
     margin-top: -60px;
-    margin-right: 80px;
     text-align: center;
     text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
 }
@@ -91,7 +89,7 @@ body {
 }
 
 .container-blur input {
-    width: 450px;
+    width: 80%;
     height: 75px;
     border-radius: 93px;
     border: none;
@@ -196,6 +194,7 @@ input[type=password]:focus {
     }
 }
 
+
 @media only screen and (max-width: 1126px) {
 
     #logo {
@@ -204,7 +203,89 @@ input[type=password]:focus {
     }
 
 
-    .container-right {
-    }
+
+    .container-blur {
+            height: 90%;
+        width: 90%;
+        }
 }
+
+@media only screen and (max-width: 801px) {
+
+   .container-blur h1 {
+    font-size: 80px;
+       text-align: center;
+    }
+    .container-blur h2 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+
+
+}
+
+@media only screen and (max-width: 620px) {
+
+    .container-blur h1 {
+        font-size: 60px;
+        text-align: center;
+        line-height: 2;
+    }
+    .container-blur h2 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+
+
+
+
+}
+
+@media only screen and (max-width: 512px) {
+
+
+
+    .container-blur {
+        width: 100%;
+        border-radius: 20px;
+        height: 80%;
+    }
+
+    .container-right {
+        width: 100%;
+
+    }
+    .container-blur h1 {
+    }
+
+    .container-blur input {
+        margin-left: 11%;
+        width: 60%;
+        height: 50px;
+    }
+
+    .container-blur img {
+        display: none;
+    }
+
+    .container-button .btn {
+        width: 150px;
+        font-size: 18px;
+    }
+
+    .container-button .btn2 {
+        width: 150px;
+        font-size: 18px;
+    }
+
+    #logo {
+        display: none;
+    }
+
+
+}
+
+
 
