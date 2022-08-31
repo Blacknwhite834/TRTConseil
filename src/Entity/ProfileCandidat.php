@@ -20,7 +20,7 @@ class ProfileCandidat
     #[ORM\Column(length: 255)]
     private ?string $Prenom = null;
 
-    #[ORM\Column(type: Types::OBJECT)]
+    #[ORM\Column(length: 255)]
     private ?string $CV = null;
 
     #[ORM\Column(length: 255)]

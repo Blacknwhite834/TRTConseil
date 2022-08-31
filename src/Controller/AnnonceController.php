@@ -49,6 +49,7 @@ class AnnonceController extends AbstractController
         $email = $this->getUser()->getEmail();
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $annonce->setEmail($email);
             $entityManager->persist($annonce);
             $entityManager->flush();
             return $this->redirectToRoute('app_annonce_index', [], Response::HTTP_SEE_OTHER);
@@ -101,6 +102,7 @@ class AnnonceController extends AbstractController
             'annonce' => $annonce,
             'candidats' => $listCandidats,
             'email' => $email,
+            'candidatcv' => 'attachment; filename="public/uploads/images/exemple-cv.pdf"',
         ]);
     }
 

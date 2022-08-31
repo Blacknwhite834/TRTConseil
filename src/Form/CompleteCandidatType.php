@@ -3,6 +3,7 @@
 namespace App\Form;
 use App\Entity\ProfileCandidat;
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;

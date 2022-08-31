@@ -36,7 +36,7 @@ class CompleteProfileCandidatController extends AbstractController
             $this->getUser()->setRoles(['ROLE_CANDIDAT']);
             $entityManager->persist($profile);
             $entityManager->flush();
-            return $this->redirectToRoute('app_home_page');
+            return $this->redirectToRoute('app_wait');
         }
 
 

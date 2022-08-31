@@ -14,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mime\Email;
@@ -45,23 +46,41 @@ class CandidatureController extends AbstractController
         $candidature->setPrenom($candidatNom->getPrenom()); // set the lastname of the ProfileCandidat in the Candidature
         $candidature->setCv($candidatNom->getCV()); // set the cv of the ProfileCandidat in the Candidature
         $candidature->setAnnonce($annonce); // set the annonce_id in the Candidature
-        /*
-        if ($candidature->getAnnonce() == $annonce->getId()) {
-            throw $this->createNotFoundException();
-        }*/
+
         $entityManager->persist($candidature);
         $entityManager->flush();
 
-        if ($candidature->getIsVerified() == true) {
+        if ($candidature->getIsVerified()) {
             $email = (new Email())
-                ->from('mailer@example.com')
-                ->to($candidatNom->getEmailAdress())
+                ->from('trtconseilexample@gmail.com')
+                ->to($annonce->getEmail())
                 ->subject('Vous avez un nouveau candidat !')
-                ->text('{$candidature->getNom()} {$candidature->getPrenom()} a postulé à votre annonce !');
+                ->text("{$candidature->getNom()} {$candidature->getPrenom()} a postulé à votre annonce, vous trouverez son CV en pièce jointe !")
+                ->attachFromPath("public/uploads/images/{$candidature->getCv()}");
+            ;
             $mailer->send($email);
         }
 
         return $this->redirectToRoute('app_annonce_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/envoi-email', name: 'envoi-email', methods: ['GET', 'POST'])]
+    public function sendEmail(MailerInterface $mailer, Candidature $candidature, Annonce $annonce): Response
+    {
+       if ($candidature->getIsVerified()) {
+            $email = (new Email())
+                ->from('trtconseilexample@gmail.com')
+                ->to($annonce->getEmail())
+                ->subject('Vous avez un nouveau candidat !')
+                ->text("{$candidature->getNom()} {$candidature->getPrenom()} a postulé à votre annonce, vous trouverez son CV en pièce jointe !")
+                ->attachFromPath("public/uploads/images/{$candidature->getCv()}");
+            ;
+            $mailer->send($email);
+       }
+
+
+
+        return new Response("Email envoyé avec succès");
     }
 
 }

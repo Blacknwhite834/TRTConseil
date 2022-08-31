@@ -29,8 +29,9 @@
     </table>
 
     <div class="links">
-
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECRUTEUR') or is_granted('ROLE_RECRUTEUR')%}
     {{ include('annonce/_delete_form.html.twig') }}
+        {% endif %}
 
         <a href="{{ path('app_candidature', {'id': annonce.id}) }}" class="btn" id="btn-3">Postuler</a>
     </div>
@@ -42,12 +43,16 @@
             <li>
                 <a>{{ candidats.nom }}</a>
                 <a>{{ candidats.prenom }}</a>
-                <a>{{ candidats.cv }}</a>
+                <a href="{{ asset('uploads/images/' ~ candidats.cv ~ '')}}" download>Télécharger CV</a>
+
+
+
             </li>
         </ul>
 
     {% endfor %}
     {% endif %}
+
         </div>
         </div>
     </div>
