@@ -112,6 +112,42 @@ tr.annonce {
     margin-top: -90px;
 }
 
+@media only screen and (max-width: 1155px) {
+    .container-annonces {
+        margin: 0 auto;
+    }
+
+    .container-annonces h1{
+        margin-top: -103px;
+        margin-left: 307px;
+    }
+
+    tr.annonce {
+        width: 40%;
+    }
+
+}
+
+@media only screen and (max-width: 867px) {
+    .container-annonces h1 {
+        text-align: center;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width: 651px) {
+    tr.annonce {
+        width: 90%;
+    }
+
+}
+
+@media only screen and (max-width: 307px) {
+    .container-annonces h1 {
+        font-size: 17vw;
+    }
+}
+
 
 
 
