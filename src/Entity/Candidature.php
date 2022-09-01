@@ -6,6 +6,7 @@ use App\Repository\CandidatureRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Mime\Email;
 
 #[ORM\Entity(repositoryClass: CandidatureRepository::class)]
 class Candidature
@@ -25,7 +26,7 @@ class Candidature
     private ?string $cv = null;
 
     #[ORM\ManyToOne(inversedBy: 'candidatures')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Annonce $annonce = null;
 
     #[ORM\Column]
@@ -98,6 +99,7 @@ class Candidature
 
         return $this;
     }
+
 
 
 }

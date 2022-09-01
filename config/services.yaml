@@ -33,7 +33,6 @@ services:
 
     App\EventListener\MailEvent:
         tags:
-            - # these are the options required to define the entity listener
-                name: 'doctrine.orm.entity_listener'
-                event: 'preUpdate'
-                entity: 'App\Entity\Candidature'
+            - name: 'doctrine.orm.entity_listener'
+              event: 'postUpdate'
+              entity: 'App\Entity\Candidature'

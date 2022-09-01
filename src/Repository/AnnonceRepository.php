@@ -16,6 +16,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class AnnonceRepository extends ServiceEntityRepository
 {
+
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Annonce::class);

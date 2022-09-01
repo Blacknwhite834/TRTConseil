@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -31,7 +32,10 @@ class CandidatureCrudController extends AbstractCrudController
                 ->onlyOnIndex(),
             TextField::new('nom'),
             TextField::new('prenom'),
-            TextField::new('cv'),
+            ImageField::new('cv')
+                ->hideOnIndex()
+                ->setUploadDir('public/uploads/images/'),
+            TextField::new('cv')->setTemplatePath('admin/document_link.html.twig')->onlyOnIndex(),
             AssociationField::new('annonce')
             ->setLabel('Annonce associée')
             ->setFormTypeOption('choice_label', 'id'),

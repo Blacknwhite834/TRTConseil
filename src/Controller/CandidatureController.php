@@ -50,37 +50,11 @@ class CandidatureController extends AbstractController
         $entityManager->persist($candidature);
         $entityManager->flush();
 
-        if ($candidature->getIsVerified()) {
-            $email = (new Email())
-                ->from('trtconseilexample@gmail.com')
-                ->to($annonce->getEmail())
-                ->subject('Vous avez un nouveau candidat !')
-                ->text("{$candidature->getNom()} {$candidature->getPrenom()} a postulé à votre annonce, vous trouverez son CV en pièce jointe !")
-                ->attachFromPath("public/uploads/images/{$candidature->getCv()}");
-            ;
-            $mailer->send($email);
-        }
+
+
 
         return $this->redirectToRoute('app_annonce_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/envoi-email', name: 'envoi-email', methods: ['GET', 'POST'])]
-    public function sendEmail(MailerInterface $mailer, Candidature $candidature, Annonce $annonce): Response
-    {
-       if ($candidature->getIsVerified()) {
-            $email = (new Email())
-                ->from('trtconseilexample@gmail.com')
-                ->to($annonce->getEmail())
-                ->subject('Vous avez un nouveau candidat !')
-                ->text("{$candidature->getNom()} {$candidature->getPrenom()} a postulé à votre annonce, vous trouverez son CV en pièce jointe !")
-                ->attachFromPath("public/uploads/images/{$candidature->getCv()}");
-            ;
-            $mailer->send($email);
-       }
-
-
-
-        return new Response("Email envoyé avec succès");
-    }
 
 }

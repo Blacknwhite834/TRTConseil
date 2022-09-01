@@ -30,7 +30,7 @@ class Annonce
     #[ORM\Column]
     private ?bool $is_verified = false;
 
-    #[ORM\OneToMany(mappedBy: 'annonce', targetEntity: Candidature::class)]
+    #[ORM\OneToMany(mappedBy: 'annonce', targetEntity: Candidature::class, cascade: ["remove"])]
     private Collection $candidatures;
 
     #[ORM\Column(length: 255)]
