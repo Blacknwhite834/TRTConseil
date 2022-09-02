@@ -30,6 +30,9 @@ class Consultant implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $is_verified = true;
 
+    #[ORM\Column]
+    private ?bool $is_approved = true;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -100,7 +103,7 @@ class Consultant implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getIsVerified(): ?bool
+    public function isIsVerified(): ?bool
     {
         return $this->is_verified;
     }
@@ -108,6 +111,18 @@ class Consultant implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $is_verified): self
     {
         $this->is_verified = $is_verified;
+
+        return $this;
+    }
+
+    public function getIsApproved(): ?bool
+    {
+        return $this->is_approved;
+    }
+
+    public function setIsApproved(bool $is_approved): self
+    {
+        $this->is_approved = $is_approved;
 
         return $this;
     }

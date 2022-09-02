@@ -52,7 +52,8 @@ class BackOfficeController extends AbstractDashboardController
 
         yield MenuItem::section('Dashboard :'),
             yield MenuItem::linkToCrud('Users', 'fa-solid fa-user', User::class),
-            yield MenuItem::linkToCrud('Consultants', 'fa-solid fa-user', Consultant::class),
+            yield MenuItem::linkToCrud('Consultants', 'fa-solid fa-user', Consultant::class)
+            ->setPermission('ROLE_ADMIN'),
         yield MenuItem::linkToCrud('Candidats', 'fa-solid fa-user', ProfileCandidat::class),
         yield MenuItem::linkToCrud('Recruteurs', 'fa-solid fa-user', ProfileRecruteur::class),
             yield MenuItem::linkToCrud('Annonces', 'fa-solid fa-user', Annonce::class),

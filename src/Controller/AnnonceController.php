@@ -91,8 +91,13 @@ class AnnonceController extends AbstractController
 
         $email = $this->getUser()->getEmail();
 
-        $candidats = $doctrine->getRepository(Candidature::class);
-        $listCandidats = $candidats->findAll();
+
+
+          //  $candidats = $doctrine->getRepository(Candidature::class);
+           // $listCandidats = $candidats->findAll();
+
+
+
 
 
         if (!$annonce->getIsVerified()) {
@@ -100,9 +105,8 @@ class AnnonceController extends AbstractController
         }
         return $this->render('annonce/show.html.twig', [
             'annonce' => $annonce,
-            'candidats' => $listCandidats,
+            'candidats' => $annonce->getCandidatures(),
             'email' => $email,
-            'candidatcv' => 'attachment; filename="public/uploads/images/exemple-cv.pdf"',
         ]);
     }
 

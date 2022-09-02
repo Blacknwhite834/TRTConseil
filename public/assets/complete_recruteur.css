@@ -116,3 +116,92 @@ input::placeholder {
 input[type]:focus {
     outline: none;
 }
+
+
+@media only screen and (max-width: 1412px) {
+
+    img#logo {
+        display: none;
+    }
+
+
+
+
+}
+
+@media only screen and (max-width: 847px) {
+
+    .container-blur input {
+        width: 500px;
+    }
+
+    .container-blur {
+        border-radius: 20px ;
+    }
+
+    .container-blur h1 {
+        font-size: 45px;
+        text-align: center;
+    }
+
+
+
+
+}
+
+
+@media only screen and (max-width: 847px) {
+
+    .container-blur input {
+        width: 300px;
+    }
+
+    .container-blur h1 {
+        font-size: 30px;}
+
+
+
+}
+
+@media only screen and (max-width: 847px) {
+
+    .container-blur input {
+        width: 200px;
+    }
+
+    .container-blur h1 {
+        font-size: 30px;}
+
+
+
+}
+
+@media only screen and (max-width: 281px) {
+
+    .container-blur input {
+        width: 160px;
+        height: 50px;
+    }
+
+    .container-blur h1 {
+        font-size: 20px;
+        margin: auto;
+    padding-top: 20px;
+    }
+
+    .container-blur {
+        height: auto;
+    }
+
+    input::placeholder {
+        font-size: 14px;
+        color: #CFCFCF;
+    }
+
+
+
+    }
+
+@media only screen and (max-width: 220px) {
+
+}

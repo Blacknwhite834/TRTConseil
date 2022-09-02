@@ -20,11 +20,15 @@
                     </div>
 
                     <div class="menu-items">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">about</a></li>
-                        <li><a href="#">blogs</a></li>
-                        <li><a href="#">portfolio</a></li>
-                        <li><a href="#">contact</a></li>
+                        <li><a href="{{ path('app_home_page') }}">Home</a></li>
+                        <li><a href="{{ path('app_annonce_index') }}">Annonces</a></li>
+                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECRUTEUR') %}
+                        <li><a href="{{ path('app_annonce_new') }}">Publier</a></li>
+                        {% endif %}
+                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CONSULTANT') %}
+                        <li><a href="{{ path('admin') }}">Back-office</a></li>
+                        {% endif %}
+
                     </div>
                 </div>
             </div>
@@ -94,16 +98,17 @@
 
                     <div class="wrapper-1">
                         <div class="flex-1">
-                            <h1>Annonces</h1>
+                           <a href="{{ path('app_annonce_index') }}"><h1>Annonces</h1></a>
                         </div>
+
                         <div class="flex-2">
-                            <h1>Candidatures</h1>
+                            <h1>Bienvenue !</h1>
                         </div>
                         <div class="flex-3">
-                            <h1>Publier</h1>
+                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECRUTEUR') %}      <a href="{{ path('app_annonce_new') }}">  <h1>Publier</h1></a>{% endif %}
                         </div>
                         <div class="flex-4">
-                            <h1>Back-office</h1>
+                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CONSULTANT') %}     <a href="{{ path('admin') }}">  <h1>Back-office</h1></a> {% endif %}
                         </div>
 
                     </div>

@@ -23,10 +23,9 @@
                 <td>
 
                     <a href="{{ path('app_annonce_show', {'id': annonce.id}) }}" class="btn" id="btn-1">Voir</a>
-                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECRUTEUR') %}
-                    <a href="{{ path('app_annonce_edit', {'id': annonce.id}) }}" class="btn" id="btn-2">Editer</a>
-                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CANDIDAT') %}
                     <a href="{{ path('app_candidature', {'id': annonce.id}) }}" class="btn" id="btn-3">Postuler</a>
+                    {% endif %}
                 </td>
             </tr>
 
