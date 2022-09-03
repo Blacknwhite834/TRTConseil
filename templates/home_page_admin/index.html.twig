@@ -28,6 +28,7 @@
                         {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CONSULTANT') %}
                         <li><a href="{{ path('admin') }}">Back-office</a></li>
                         {% endif %}
+                        <li><a href="{{ path('app_logout') }}">Log out</a></li>
 
                     </div>
                 </div>
@@ -102,13 +103,13 @@
                         </div>
 
                         <div class="flex-2">
-                            <h1>Bienvenue !</h1>
+                            <img src="{{ asset('./assets/images/icon1.png') }}" >
                         </div>
                         <div class="flex-3">
-                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECRUTEUR') %}      <a href="{{ path('app_annonce_new') }}">  <h1>Publier</h1></a>{% endif %}
+                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECRUTEUR') %}      <a href="{{ path('app_annonce_new') }}">  <h1>Publier</h1></a> {% else %} <img src="{{ asset('./assets/images/icon2.png') }}" > {% endif %}
                         </div>
                         <div class="flex-4">
-                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CONSULTANT') %}     <a href="{{ path('admin') }}">  <h1>Back-office</h1></a> {% endif %}
+                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CONSULTANT') %}     <a href="{{ path('admin') }}">  <h1>Back-office</h1></a> {% else %}<img src="{{ asset('./assets/images/icon3.png') }}" >{% endif %}
                         </div>
 
                     </div>

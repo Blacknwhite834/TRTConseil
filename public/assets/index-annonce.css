@@ -133,12 +133,31 @@ tr.annonce {
         text-align: center;
         margin: 0 auto;
     }
+
+}
+@media only screen and (max-width: 787px) {
+    #btn-1 {
+        display: block;
+    }
 }
 
 @media only screen and (max-width: 651px) {
     tr.annonce {
         width: 90%;
     }
+
+
+}
+
+@media only screen and (max-width: 357px) {
+    #btn-1 {
+        margin: auto;
+    }
+    .btn {
+        margin-right: 0px;
+        margin-top: 10px;
+    }
+
 
 }
 
