@@ -51,6 +51,7 @@ class CandidatureController extends AbstractController
         $entityManager->flush();
 
 
+        $this->addFlash('success', 'Candidature envoyée !');
 
 
         return $this->redirectToRoute('app_annonce_index', [], Response::HTTP_SEE_OTHER);

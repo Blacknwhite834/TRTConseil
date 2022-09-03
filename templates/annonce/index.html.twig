@@ -11,6 +11,11 @@
     {{ block('homepage', 'home_page_admin/index.html.twig') }}
 
    <div class="container-annonces">
+       {% for message in app.flashes('success') %}
+           <div class="alert alert-success">
+               {{ message }}
+           </div>
+       {% endfor %}
     <h1>Annonces</h1>
 
     <table>
