@@ -5,8 +5,9 @@
 <link href="{{ asset('assets/register.css')}}" rel="stylesheet" />
 {% endblock %}
 {% block body %}
-    <img src="{{ asset('./assets/images/logo.png') }}" id="logo"/>
-
+    <a href="{{ path('app_login')}}">
+    <img src="{{ asset('./assets/images/logo.png') }}" id="logo" />
+    </a>
     <div class="container-register">
         <div class="container-blur">
     {% for flash_error in app.flashes('verify_email_error') %}
