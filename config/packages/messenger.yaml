@@ -6,7 +6,6 @@ framework:
             # https://symfony.com/doc/current/messenger.html#transport-configuration
             async:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
-                spool:    { type: memory }
                 options:
                     use_notify: true
                     check_delayed_interval: 60000
