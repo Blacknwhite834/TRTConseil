@@ -98,6 +98,9 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "compile": [
+            "php bin/console cache:clear --env=prod"
         ]
     },
     "conflict": {
