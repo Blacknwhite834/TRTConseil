@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 html {
     width: 100%;
@@ -13,11 +13,8 @@ body {
     padding: 0;
     margin: 0;
     height: 100%;
-    background-image: linear-gradient(to right top, #393ebe, #30369d, #292e7d, #22265f, #1c1d41);
-    font-family: 'Lato', sans-serif;
-    background-position: center;
-    background-repeat: repeat;
-    background-size: cover;
+    background: #0C0B10;
+    font-family: 'Raleway', sans-serif;
 }
 
 #logo {
@@ -28,12 +25,12 @@ body {
 
 .sidenav {
     height: 100%;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: #232227;
     width: 300px;
     position: fixed;
     z-index: 1;
     top: 0;
+    border-radius: 0px 35px 35px 0px;
     left: 0;
     overflow-x: hidden;
 }
@@ -65,7 +62,7 @@ body {
 
 .active {
     background: #233EBC;
-    width: 80%;
+    width: 70%;
     height: 50px;
     border-radius: 93px;
 }
@@ -74,7 +71,7 @@ body {
 
 .sidenav li:hover{
     background: #233EBC;
-    width: 80%;
+    width: 70%;
     height: 50px;
     border-radius: 93px;
 
@@ -135,8 +132,7 @@ header {
     display: flex;
     float: right;
     margin: 35px;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: #232227;
     border-radius: 48px;
     width: auto;
     height: 85px;
@@ -188,8 +184,7 @@ header {
     height: auto;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
     border-radius: 48px;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: #232227;
 
 }
 
@@ -215,9 +210,52 @@ header {
     height: 47%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
     margin-bottom: 42px;
+    background-color: #232227;
+    border-radius: 40px;
     gap: 10px;
+}
+
+.block-right .wrapper-1 h1 {
+    line-height: 0;
+    font-size: 20px;
+    color: #bbbbbb;
+    margin: 35px;
+    text-align: left;
+}
+
+.wrapper-data {
+    display:block;
+    padding: 20px;
+    margin-left: 20px;
+    margin-top: -20px;
+}
+
+.data {
+    background: #4B4B4B;
+    width: 95%;
+    height: 60px;
+    border-radius: 20px;
+    margin: 20px 0px 0px 0px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.data h3 {
+    padding: 0 20px;
+    color: white;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.data p {
+    margin-right: 40px;
+    color: white;
+    font-weight: 500;
+    font-size: 18px;
 }
 
 .wrapper-1 .flex-1, .wrapper-1 .flex-2, .wrapper-1 .flex-3, .wrapper-1 .flex-4 {
@@ -226,7 +264,6 @@ header {
     background-color: rgb(0, 0, 0);
     width: 49%;
     height: 50%;
-    background-color: rgba(0, 0, 0, 0.4);
     transition: 0.9s;
 }
 
@@ -317,13 +354,7 @@ header {
     -webkit-animation:color-change-5x 4s ease-in-out infinite alternate both;animation:color-change-5x 4s ease-in-out infinite alternate both
 }
 
-.wrapper-1 h1 {
-    font-size: 20px;
-    color: white;
-    text-align: center;
-    margin-top: 60px;
 
-}
 
 .wrapper-1 a {
     text-decoration: none;
@@ -332,10 +363,32 @@ header {
 
 #title {
     line-height: 0;
-    padding-left: 425px;
+    padding-left: 420px;
     color: white;
     font-size: 50px;
     margin-top: -80px;
+}
+
+.wrapper-2-admin {
+    width: 100%;
+    height: 47%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    border-radius: 48px;
+    background-color: #232227;
+}
+
+.wrapper-2-admin p{
+    color: #a8a8a8;
+    margin-left: 40px;
+}
+
+.wrapper-2-admin h1 {
+    line-height: 3;
+    font-size: 20px;
+    color: #c9c9c9;
+    margin-left: 40px;
+    margin-bottom: -20px;
+    padding-top: 20px;
 }
 
 .wrapper-2 {

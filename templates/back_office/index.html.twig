@@ -1,0 +1,180 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BackOfficeController!{% endblock %}
+{% block stylesheets%}
+    <link href="{{ asset('assets/homepage.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/back-office.css') }}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    {{ block('homepage', 'home_page_admin/index.html.twig') }}
+    <div class="main">
+        <h1 id="title">Dashboard</h1>
+        <table class="table-user">
+            <h1 style="color: white; margin-top: 60px;">Utilisateurs :</h1>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>IsVerified</th>
+                <th>IsApproved</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in user %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.roles|json_encode }}</td>
+                    <td><div class="wrapper-switch"><div class="switch">
+                                <input  type="checkbox" name="toggle-1" id="toggleAll-1 {{  user.id }}" {{ (user.isVerified) ? 'checked' : ''}} data-id="{{ user.id }}" /> <!--toggle switch-->
+                                <label for="toggleAll-1 {{  user.id }}"></label>
+                            </div></div></td>
+                    <td><div class="wrapper-switch"><div class="switch">
+                                <input  type="checkbox"  name="toggle-2" id="toggleAll-2 {{  user.id }}" {{ (user.isApproved) ? 'checked' : ''}} data-id="{{ user.id }}" /> <!--toggle switch-->
+                                <label for="toggleAll-2 {{  user.id }}"></label>
+                            </div></div></td>
+                    <td>
+                        <a class="btn" id="btn-1" href="{{ path('app_back_office_show', {'id': user.id }) }}">Voir le profil</a>
+                    </td>
+                </tr>
+
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+        <table class="table-user">
+            <h1 style="color: white">Annonces :</h1>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Titre</th>
+                <th>Lieu</th>
+                <th>Description</th>
+                <th>IsApproved</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for annonce in annonce %}
+            <tr>
+                <td>{{ annonce.id }}</td>
+                <td>{{ annonce.email }}</td>
+                <td>{{ annonce.title }}</td>
+                <td>{{ annonce.lieu }}</td>
+                <td>{{ annonce.description }}</td>
+                <td><div class="wrapper-switch"><div class="switch">
+                            <input  type="checkbox"  name="toggle-3" id="toggleAll{{ annonce.id }}" {{ (annonce.isVerified) ? 'checked' : ''}} data-id="{{  annonce.id }}" /> <!--toggle switch-->
+                            <label for="toggleAll{{ annonce.id }}"></label>
+                        </div></div></td>
+                <td>
+                    <a class="btn" id="btn-1" href="{{ path('app_annonce_show', {'id': annonce.id }) }}">Voir le profil</a>
+                </td>
+            </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+
+        <table class="table-user">
+            <h1 style="color: white">Candidatures :</h1>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>CV</th>
+                <th>IsApproved</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for candidature in candidature %}
+                <tr>
+                    <td>{{ candidature.id }}</td>
+                    <td>{{ candidature.nom }}</td>
+                    <td>{{ candidature.prenom }}</td>
+                    <td><a href="{{ asset('uploads/images/' ~ candidature.cv ~ '')}}" download>CV</a></td>
+                    <td><div class="wrapper-switch"><div class="switch">
+                                <input  type="checkbox"  name="toggle-3" id="toggleAll{{ candidature.id }}" {{ (candidature.isVerified) ? 'checked' : ''}} data-id="{{  candidature.id }}" /> <!--toggle switch-->
+                                <label for="toggleAll{{ candidature.id }}"></label>
+                            </div></div></td>
+                    <td>
+                        <a class="btn" id="btn-1" href="{{ path('app_annonce_index') }}">Voir l'annonce liée</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        let activate = document.querySelectorAll('[name="toggle-1"]');
+        for(let bouton of activate){
+            bouton.addEventListener("click", function(){
+                let text = "Vous êtes sûr ?";
+                if (confirm(text) === true) {
+                    let xmlhtpp = new XMLHttpRequest();
+
+                    xmlhtpp.open("get", `/back-office/${this.dataset.id}/activate-permission1`)
+                    xmlhtpp.send();
+                } else {
+                    bouton.checked = !bouton.checked;
+                }
+            })
+
+        }
+
+        let activate2 = document.querySelectorAll('[name="toggle-2"]');
+        for(let bouton2 of activate2){
+            bouton2.addEventListener("click", function(){
+                let text = "Vous êtes sûr ?";
+                if (confirm(text) === true) {
+                    let xmlhtpp = new XMLHttpRequest();
+
+                    xmlhtpp.open("get", `/back-office/${this.dataset.id}/activate-permission2`)
+                    xmlhtpp.send();
+                } else {
+                    bouton2.checked = !bouton2.checked;
+                }
+            })
+
+        }
+
+        let activate3 = document.querySelectorAll('[name="toggle-3"]');
+        for(let bouton3 of activate3){
+            bouton3.addEventListener("click", function(){
+                let text = "Vous êtes sûr ?";
+                if (confirm(text) === true) {
+                    let xmlhtpp = new XMLHttpRequest();
+
+                    xmlhtpp.open("get", `/back-office/${this.dataset.id}/activate-permission3`)
+                    xmlhtpp.send();
+                } else {
+                    bouton3.checked = !bouton3.checked;
+                }
+            })
+
+        }
+    });
+
+
+
+</script>
+{% endblock %}

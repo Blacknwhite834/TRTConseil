@@ -34,6 +34,7 @@ class CompleteProfileRecruteurController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $profile->setEmailAdress($this->getUser()->getEmail());
+            $profile->setUser($this->getUser());
             $this->getUser()->setRoles(['ROLE_RECRUTEUR']);
             $entityManager->persist($profile);
             $entityManager->flush();

@@ -33,6 +33,7 @@ class CompleteProfileCandidatController extends AbstractController
                 $this->getParameter('upload_directory'),
                 $fileName);
             $profile->setCV($fileName);
+            $profile->setUser($this->getUser());
             $this->getUser()->setRoles(['ROLE_CANDIDAT']);
             $entityManager->persist($profile);
             $entityManager->flush();

@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.main {
+    margin-left: 330px;
+    padding: 1px 16px;
+    font-family: 'Raleway', sans-serif;
+}
+
+#title {
+    padding-left: 0px;
+}
+
+table {
+    border: none;
+
+    border-collapse: collapse;
+    color: #a8a8a8;
+    width: 100%;
+    table-layout: fixed;
+}
+
+table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+}
+
+tbody {
+    display: contents;
+}
+
+table tr {
+    background-color: #232227;
+    border: none;
+    padding: .35em;border-radius: 20px;
+}
+
+table th,
+table td {
+    padding: .625em;
+    text-align: center;
+}
+
+table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+
+#btn-1 {
+    background: transparent;
+    font-weight: 500;
+    margin-top: 60px;
+    padding: 0px;
+    cursor: pointer;
+}
+
+
+/----------------------/
+
+.wrapper-switch {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.switch {
+    display: inline-flex;
+    margin: 0 10px;
+}
+.switch input[type=checkbox] {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+.switch input[type=checkbox]:checked + label {
+    background: #000000;
+}
+.switch input[type=checkbox]:checked + label::after {
+    left: calc(100% - 4px);
+    transform: translateX(-100%);
+}
+.switch label {
+    cursor: pointer;
+    width: 48px;
+    height: 24px;
+    background: grey;
+    display: block;
+    border-radius: 24px;
+    position: relative;
+}
+.switch label::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 16px;
+    transition: 0.3s;
+}
+
+@media screen and (max-width: 600px) {
+    table {
+        border: 0;
+    }
+
+    table caption {
+        font-size: 1.3em;
+    }
+
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+
+    table td::before {
+        /*
+        * aria-label has no advantage, it won't be read inside a table
+        content: attr(aria-label);
+        */
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table td:last-child {
+        border-bottom: 0;
+    }
+}

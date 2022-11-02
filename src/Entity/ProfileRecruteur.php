@@ -25,6 +25,10 @@ class ProfileRecruteur
      */
     private ?string $email_adress = null;
 
+    #[ORM\OneToOne(inversedBy: 'profile_recruteur', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -62,6 +66,18 @@ class ProfileRecruteur
     public function setEmailAdress(string $email_adress): self
     {
         $this->email_adress = $email_adress;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

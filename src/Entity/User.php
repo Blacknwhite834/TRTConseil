@@ -36,6 +36,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $is_approved = false;
 
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?ProfileCandidat $profile_candidat = null;
+
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?ProfileRecruteur $profile_recruteur = null;
+
 
 
 
@@ -129,6 +135,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsApproved(bool $is_approved): self
     {
         $this->is_approved = $is_approved;
+
+        return $this;
+    }
+
+    public function getProfileCandidat(): ?ProfileCandidat
+    {
+        return $this->profile_candidat;
+    }
+
+    public function setProfileCandidat(ProfileCandidat $profile_candidat): self
+    {
+        // set the owning side of the relation if necessary
+        if ($profile_candidat->getUserId() !== $this) {
+            $profile_candidat->setUserId($this);
+        }
+
+        $this->profile_candidat = $profile_candidat;
+
+        return $this;
+    }
+
+    public function getProfileRecruteur(): ?ProfileRecruteur
+    {
+        return $this->profile_recruteur;
+    }
+
+    public function setProfileRecruteur(ProfileRecruteur $profile_recruteur): self
+    {
+        // set the owning side of the relation if necessary
+        if ($profile_recruteur->getUser() !== $this) {
+            $profile_recruteur->setUser($this);
+        }
+
+        $this->profile_recruteur = $profile_recruteur;
 
         return $this;
     }

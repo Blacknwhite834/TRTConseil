@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BackOfficeController!{% endblock %}
+{% block stylesheets%}
+    <link href="{{ asset('assets/homepage.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/back-office.css') }}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    {{ block('homepage', 'home_page_admin/index.html.twig') }}
+<div class="main">
+    <h1 id="title">Dashboard</h1>
+    {% for candidat in candidat %}
+        <td>{{ candidat.nom }}</td>
+        <td>{{ candidat.prenom }}</td>
+    {% endfor %}
+</div>
+{% endblock %}

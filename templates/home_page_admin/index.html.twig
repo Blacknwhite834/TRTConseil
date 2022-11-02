@@ -67,7 +67,7 @@
         </div>
     </div>
         {% endblock %}
-    <h1 id="title">Home</h1>
+    <h1 id="title">Dashboard</h1>
     <div class="main-wrapper">
 
             <div class="wrapper-left">
@@ -93,37 +93,88 @@
                     {% endfor %}
                     </tbody>
                 </table>
-                <a href="{{ path('app_annonce_index') }}" id="btn-ann">Annonces</a>
+                <a href="{{ path('app_annonce_index') }}" id="btn-ann">Voir plus</a>
             </div>
 
             <div class="block-right">
 
                     <div class="wrapper-1">
-                        <div class="flex-1">
-                           <a href="{{ path('app_annonce_index') }}"><h1>Annonces</h1></a>
+                        <h1>Statistiques</h1>
+                        <div class="wrapper-data">
+                            <div class="data"><h3>Annonce</h3><p>{{ numberAnnonce }}</p></div>
+                            <div class="data"><h3>Candidature</h3><p>{{ numberCandidature }}</p></div>
                         </div>
 
-                        <div class="flex-2">
-                            <img src="{{ asset('./assets/images/icon1.png') }}" >
-                        </div>
-                        <div class="flex-3">
-                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECRUTEUR') %}      <a href="{{ path('app_annonce_new') }}">  <h1>Publier</h1></a> {% else %} <img src="{{ asset('./assets/images/icon2.png') }}" > {% endif %}
-                        </div>
-                        <div class="flex-4">
-                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CONSULTANT') %}     <a href="{{ path('admin') }}">  <h1>Back-office</h1></a> {% else %}<img src="{{ asset('./assets/images/icon3.png') }}" >{% endif %}
-                        </div>
+
 
                     </div>
+                {% if is_granted('ROLE_ADMIN') %}
+                <div class="wrapper-2-admin">
+                    <div>
+                        <div><canvas id="categories" height="190" width="400" style="margin-left: 20px; padding-top: 20px"></canvas></div>
+                        <script>
+                            const categories = document.querySelector("#categories");
+                            const myChart = new Chart(categories, {
+                                type: 'bar',
+                                data: {
+                                    labels: ['Annonce', 'Candidature'],
+                                    datasets: [{
+                                        label: 'Nombre d\'annonces et de candidatures',
+                                        data: [{{ numberAnnonce }}, {{ numberCandidature }}],
+                                        backgroundColor: [
+                                            '#4B4B4B',
+                                            '#4B4B4B',
+                                        ],
+                                        borderColor: [
+                                            'rgba(255, 99, 132, 1)',
+                                            'rgba(54, 162, 235, 1)',
+                                        ],
 
+
+                                    }]
+                                },
+                                options: {
+                                    responsive: true,
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                            });
+                        </script>
+                    </div>
+                </div>
+                {% else %}
                     <div class="wrapper-2">
+
                         <h1>TRT Conseil</h1>
                         <p>TRT Conseil est là pour vous à chaque instant de votre vie professionnelle !</p>
                         <div class="logo-flex">
                         <img src="{{ asset('./assets/images/logo-2.png') }}" id="logo-2">
                         </div>
+
                     </div>
+                {% endif %}
          </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+
+
+      /*  $(document).ready(function(){
+            $(".ham").click(function(){
+                if ($(".mobile-menu").css("display") === "none") {
+                    $(".mobile-menu").css("display", "block");
+                } else {
+                    $(".mobile-menu").css("display", "none");
+                }
+            });
+        });*/
+    </script>
 {% endblock %}
 
 
