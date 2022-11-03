@@ -36,6 +36,9 @@ class Annonce
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
+    #[ORM\ManyToOne(inversedBy: 'annonces')]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->candidatures = new ArrayCollection();
@@ -132,6 +135,18 @@ class Annonce
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -46,6 +46,7 @@ class CandidatureController extends AbstractController
         $candidature->setPrenom($candidatNom->getPrenom()); // set the lastname of the ProfileCandidat in the Candidature
         $candidature->setCv($candidatNom->getCV()); // set the cv of the ProfileCandidat in the Candidature
         $candidature->setAnnonce($annonce); // set the annonce_id in the Candidature
+        $candidature->setUser($this->getUser()); // set the user_id in the Candidature
 
         $entityManager->persist($candidature);
         $entityManager->flush();

@@ -13,5 +13,117 @@
         <td>{{ candidat.nom }}</td>
         <td>{{ candidat.prenom }}</td>
     {% endfor %}
+    <div class="wrapper-info">
+        <h3>Utilisateur</h3>
+
+        {% for candidat in candidat %}
+            <table class="table-user">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>CV</th>
+                    <th>IsVerified</th>
+                    <th>IsApproved</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+
+                    <td>{{ candidat.id }}</td>
+                    <td>{{ candidat.emailAdress }}</td>
+                    <td>{{ candidat.user.roles|json_encode}}</td>
+                    <td>{{ candidat.nom }}</td>
+                    <td>{{ candidat.prenom }}</td>
+                    <td><a href="{{ asset('uploads/images/' ~ candidat.cv ~ '')}}" download>CV</a></td>
+                    <td>{{ candidat.user.isVerified ? 'Yes' : 'No' }}</td>
+                    <td>{{ candidat.user.isApproved ? 'Yes' : 'No' }}</td>
+                </tr>
+                </tbody>
+            </table>
+        {% endfor %}
+            {% for recruteur in recruteur %}
+        <table class="table-user">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>IsVerified</th>
+                <th>IsApproved</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+
+                <td>{{ recruteur.id }}</td>
+                <td>{{ recruteur.emailAdress }}</td>
+                <td>{{ recruteur.user.roles|json_encode}}</td>
+                    <td>{{ recruteur.nom }}</td>
+                <td>{{ recruteur.adresse }}</td>
+                <td>{{ recruteur.user.isVerified ? 'Yes' : 'No' }}</td>
+                    <td>{{ recruteur.user.isApproved ? 'Yes' : 'No' }}</td>
+                </tr>
+            </tbody>
+        </table>
+            {% endfor %}
+
+
+        <div class="wrapper-edit">
+            <a>edit</a>
+            <a>delete</a>
+            <div style="display: flex; justify-content: center">
+
+            </div>
+        </div>
+
+    </div>
+   {% for recruteur in recruteur %} <h1 style="color: white">Annonce(s) associée(s)</h1>
+   <h2 style="color: #8D8D8D;font-size: 21px;font-weight: 500;">Annonce(s) crée(s) par l'utilisateur</h2>
+   {% endfor %}
+    {% for candidat in candidat %} <h1 style="color: white">Candidature(s) associée(s)</h1>
+        <h2 style="color: #8D8D8D;font-size: 21px;font-weight: 500;">Annonce(s) où l'utilisateur à postulé</h2>
+    {% endfor %}
+        {% for annonce in annonces %}
+        <table class="table-annonce">
+            <tbody>
+            <tr class="annonce">
+                <td id="annonce-title">{{ annonce.title }}</td>
+                <td id="annonce-lieu">{{ annonce.lieu }}</td>
+                <td id="annonce-description">{{ annonce.description }}</td>
+                <td>
+
+                    <a href="{{ path('app_annonce_show', {'id': annonce.id}) }}" class="btn" id="btn-voir">Voir</a>
+                </td>
+            </tr>
+            </tbody>
+            </table>
+        {% endfor %}
+    {% for candidature in candidature %}
+        <table class="table-annonce">
+        <tbody>
+        <tr class="annonce">
+            <td id="annonce-title">{{ candidature.annonce.title}}</td>
+            <td id="annonce-lieu">{{ candidature.annonce.lieu }}</td>
+            <td id="annonce-description">{{ candidature.annonce.description }}</td>
+            <td>
+                <a href="{{ path('app_annonce_show', {'id': candidature.annonce.id}) }}" class="btn" id="btn-voir">Voir</a>
+            </td>
+        </tr>
+
+    {% else %}
+        <tr>
+            <td colspan="5">no records found</td>
+        </tr>
+        </tbody>
+        </table>
+    {% endfor %}
+
+
 </div>
 {% endblock %}

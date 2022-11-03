@@ -27,7 +27,7 @@
                         <li><a href="{{ path('app_annonce_new') }}">Publier</a></li>
                         {% endif %}
                         {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CONSULTANT') %}
-                        <li><a href="{{ path('admin') }}">Back-office</a></li>
+                        <li><a href="{{ path('app_back_office') }}">Back-office</a></li>
                         {% endif %}
                         <li><a href="{{ path('app_logout') }}">Log out</a></li>
 
@@ -55,7 +55,7 @@
                     <li {% if app.request.attributes.get('_route') == 'app_annonce_new' %} class="active" {% endif %}><img src="{{ asset('assets/images/upload.png')}}" /><a href="{{ path('app_annonce_new') }}">Publier</a></li>
                 {% endif %}
                 {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CONSULTANT') %}
-                    <li><img src="{{ asset('assets/images/back-office.png')}}" /><a href="{{ path('admin')}}">Back-office</a></li>
+                    <li {% if app.request.attributes.get('_route') == 'app_back_office' %} class="active" {% endif %}><img src="{{ asset('assets/images/back-office.png')}}" /><a href="{{ path('app_back_office') }}">Back-office</a></li>
                 {% endif %}
 
             </ul>
@@ -165,15 +165,7 @@
     <script>
 
 
-      /*  $(document).ready(function(){
-            $(".ham").click(function(){
-                if ($(".mobile-menu").css("display") === "none") {
-                    $(".mobile-menu").css("display", "block");
-                } else {
-                    $(".mobile-menu").css("display", "none");
-                }
-            });
-        });*/
+
     </script>
 {% endblock %}
 

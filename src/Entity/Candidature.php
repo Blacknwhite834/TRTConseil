@@ -32,6 +32,9 @@ class Candidature
     #[ORM\Column]
     private ?bool $is_verified = false;
 
+    #[ORM\ManyToOne(inversedBy: 'candidatures')]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -96,6 +99,18 @@ class Candidature
     public function setIsVerified(bool $is_verified): self
     {
         $this->is_verified = $is_verified;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

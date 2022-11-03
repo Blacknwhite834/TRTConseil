@@ -1,0 +1,165 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BackOfficeController!{% endblock %}
+{% block stylesheets%}
+    <link href="{{ asset('assets/homepage.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/back-office.css') }}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    {{ block('homepage', 'home_page_admin/index.html.twig') }}
+    <div class="main">
+        <h1 id="title">Utilisateurs</h1>
+        <div class="nav-bar">
+            <a {% if app.request.attributes.get('_route') == 'app_back_office' %} class="a-active" {% endif %} href="{{ path('app_back_office') }}">All</a>
+            <a {% if app.request.attributes.get('_route') == 'app_back_office_utilisateurs' %} class="a-active" {% endif %} href="{{ path('app_back_office_utilisateurs') }}">Utilisateurs</a>
+            <a {% if app.request.attributes.get('_route') == 'app_back_office_annonces' %} class="a-active" {% endif %} href="{{ path('app_back_office_annonces') }}">Annonces</a>
+            <a {% if app.request.attributes.get('_route') == 'app_back_office_candidatures' %} class="a-active" {% endif %}href="{{ path('app_back_office_candidatures') }}">Candidatures</a>
+        </div>
+
+        <form  action="{{ path('app_back_office_utilisateurs') }}">
+            <input
+                    id="search"
+                    type="search"
+                    name="q"
+                    class="form-control"
+                    placeholder="Rechercher..."
+                    aria-label="Search"
+            />
+        </form>
+
+        <div class="wrapper-sort">
+            <h3>Trier par :</h3>
+            <a href="{{path('app_back_office_utilisateurs')}}" id="back-link" style="font-size: 20px;
+    font-weight: bold;">Retour à la liste</a></li>
+            <li><btn   id="all">All</btn></li>
+            <li><btn  id="candidat-btn">Candidat</btn></li>
+            <li><btn  id="recruteur-btn">Recruteur</btn></li>
+        </div>
+        <table class="table-user" style="margin-top: 50px">
+
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>IsVerified</th>
+                <th>IsApproved</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in user %}
+                <tr class="{{ (user.roles|json_encode == '["ROLE_CANDIDAT","ROLE_USER"]') ? 'candidat-items' : 'recruteur-items'}}">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.roles|json_encode }}</td>
+                    <td><div class="wrapper-switch"><div class="switch">
+                                <input  type="checkbox" name="toggle-1" id="toggleAll-1 {{  user.id }}" {{ (user.isVerified) ? 'checked' : ''}} data-id="{{ user.id }}" /> <!--toggle switch-->
+                                <label for="toggleAll-1 {{  user.id }}"></label>
+                            </div></div></td>
+                    <td><div class="wrapper-switch"><div class="switch">
+                                <input  type="checkbox"  name="toggle-2" id="toggleAll-2 {{  user.id }}" {{ (user.isApproved) ? 'checked' : ''}} data-id="{{ user.id }}" /> <!--toggle switch-->
+                                <label for="toggleAll-2 {{  user.id }}"></label>
+                            </div></div></td>
+                    <td>
+                        <a class="btn" id="btn-1" href="{{ path('app_back_office_show', {'id': user.id }) }}">Voir le profil</a>
+                    </td>
+                </tr>
+
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+{% endblock %}
+{% block javascripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    // Filter list script :
+    $(document).ready(function(){
+        $('#candidat-btn').click(function(){
+            $('.recruteur-items').hide();
+            $('.candidat-items').show();
+        });
+        $('#recruteur-btn').click(function(){
+            $('.candidat-items').hide();
+            $('.recruteur-items').show();
+        });
+        $('#all').click(function(){
+            $('.candidat-items').show();
+            $('.recruteur-items').show();
+        });
+    });
+    $(document).ready(function(){
+        let activate = document.querySelectorAll('[name="toggle-1"]');
+        for(let bouton of activate){
+            bouton.addEventListener("click", function(){
+                let text = "Vous êtes sûr ?";
+                if (confirm(text) === true) {
+                    let xmlhtpp = new XMLHttpRequest();
+
+                    xmlhtpp.open("get", `/back-office/${this.dataset.id}/activate-permission1`)
+                    xmlhtpp.send();
+                } else {
+                    bouton.checked = !bouton.checked;
+                }
+            })
+
+        }
+
+        let activate2 = document.querySelectorAll('[name="toggle-2"]');
+        for(let bouton2 of activate2){
+            bouton2.addEventListener("click", function(){
+                let text = "Vous êtes sûr ?";
+                if (confirm(text) === true) {
+                    let xmlhtpp = new XMLHttpRequest();
+
+                    xmlhtpp.open("get", `/back-office/${this.dataset.id}/activate-permission2`)
+                    xmlhtpp.send();
+                } else {
+                    bouton2.checked = !bouton2.checked;
+                }
+            })
+
+        }
+    });
+
+    // Live search script :
+    $(document).ready(function() {
+        $('#back-link').hide();
+        var searchRequest = null;
+        $("#search").keyup(function(){
+            var minlength = 1;
+            var that = this;
+            var value = $(this).val();
+            var entitySelector = $(".table-user");
+            if (value.length >= minlength ) {
+                if (searchRequest != null)
+                    searchRequest.abort();
+                searchRequest = $.ajax({
+                    type: "GET",
+                    url: "{{ path('app_back_office_utilisateurs') }}",
+                    data: {
+                        'q' : value
+                    },
+                    dataType: "text",
+                    success: function(result){
+                        //we need to check if the value is the same
+                        if (value===$(that).val()) {
+
+                            entitySelector.html($(result).find(".table-user"));
+                            $('#back-link').show();
+
+                        }
+                    }
+                });
+            }
+        });
+
+    })
+</script>
+{% endblock %}
