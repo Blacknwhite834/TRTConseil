@@ -40,7 +40,7 @@ class MailEvent
         ->to($candidature->getAnnonce()->getEmail()) // get the email of the annnonce
         ->subject('Vous avez un nouveau candidat !')
         ->text("{$candidature->getNom()} {$candidature->getPrenom()} a postulé à votre annonce, vous trouverez son CV en pièce jointe !")
-        ->attachFromPath("public/uploads/images/{$candidature->getCv()}");
+        ->attachFromPath("../public/uploads/images/{$candidature->getCv()}");
     ;
     $this->mailer->send($email);
         }

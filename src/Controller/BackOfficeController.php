@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Repository\AnnonceRepository;
 use App\Repository\CandidatureRepository;
 use App\Repository\ProfileCandidatRepository;
@@ -47,6 +48,19 @@ class BackOfficeController extends AbstractController
             'email' => $email,
             'user' => $search,
         ]);
+    }
+
+    #[Route('/{id}/delete', name: 'app_back_office_utilisateurs_delete')]
+    public function delete(UserRepository $repository, AnnonceRepository $annonceRepository, CandidatureRepository $candidatureRepository,Request $request, EntityManagerInterface $entityManager, $id): Response
+    {
+
+        // delete user
+       /* $user = $repository->find($id);
+        $entityManager->remove($user);
+        $entityManager->flush();
+
+        $email = $this->getUser()->getEmail();*/
+        return $this->redirectToRoute('app_back_office_utilisateurs', [], Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/annonces', name: 'app_back_office_annonces')]

@@ -23,15 +23,19 @@ class AnnonceController extends AbstractController
 {
 
     #[Route('/', name: 'app_annonce_index', methods: ['GET'])]
-    public function index(AnnonceRepository $annonceRepository): Response
+    public function index(AnnonceRepository $annonceRepository, Request $request): Response
     {
         if ($this->getUser()->getIsApproved() == false or $this->getUser()->isIsVerified() == false) {
             throw $this->createAccessDeniedException('not approved');
         }
+
+        $search2 = $annonceRepository->findOneBySomeField2(
+            $request->query->get('q')
+        );
         $email = $this->getUser()->getEmail();
 
             return $this->render('annonce/index.html.twig', [
-                'annonces' => $annonceRepository->findBy(['is_verified' => true]),
+                'annonces' => $search2,
                 'email' => $email,
             ]);
 

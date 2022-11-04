@@ -55,7 +55,7 @@
                     <li {% if app.request.attributes.get('_route') == 'app_annonce_new' %} class="active" {% endif %}><img src="{{ asset('assets/images/upload.png')}}" /><a href="{{ path('app_annonce_new') }}">Publier</a></li>
                 {% endif %}
                 {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CONSULTANT') %}
-                    <li {% if app.request.attributes.get('_route') == 'app_back_office' %} class="active" {% endif %}><img src="{{ asset('assets/images/back-office.png')}}" /><a href="{{ path('app_back_office') }}">Back-office</a></li>
+                    <li {% if app.request.attributes.get('_route') == 'app_back_office'%} class="active" {% endif %}><img src="{{ asset('assets/images/back-office.png')}}" /><a href="{{ path('app_back_office') }}">Back-office</a></li>
                 {% endif %}
 
             </ul>

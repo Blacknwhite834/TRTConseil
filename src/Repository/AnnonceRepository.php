@@ -56,6 +56,23 @@ class AnnonceRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
+    public function findOneBySomeField2(string $search = null): array
+    {
+        $queryBuilder =  $this->createQueryBuilder('q')
+            ->andWhere('q.is_verified = :is_verified')
+            ->setParameter('is_verified', true)
+            ->orderBy('q.id', 'ASC');
+
+        if ($search) {
+            $queryBuilder->andWhere('q.title LIKE :search')
+                ->setParameter('search', '%'.$search.'%');
+        }
+
+        return $queryBuilder->getQuery()
+            ->getResult()
+            ;
+    }
 //    /**
 //     * @return Annonce[] Returns an array of Annonce objects
 //     */

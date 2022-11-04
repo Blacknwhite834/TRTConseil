@@ -11,6 +11,7 @@
     <h1>Annonce</h1>
         <div class="wrapper-lr">
     <div class="wrapper-show">
+        <h3>Annonce</h3>
     <table class="table">
         <tbody>
 
@@ -36,10 +37,12 @@
         <a href="{{ path('app_candidature', {'id': annonce.id}) }}" class="btn" id="btn-3">Postuler</a>
     </div>
     </div>
-        <div class="wrapper-right">
-    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECRUTEUR') or is_granted('ROLE_RECRUTEUR')%}
 
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECRUTEUR') or is_granted('ROLE_RECRUTEUR')%}
+            <div class="wrapper-right">
     {% for candidats in candidats %}
+        <h3>Candidature</h3>
+        <div class="wrapper-candidature">
         <ul>
             <li>
                 <a>{{ candidats.nom }}</a>
@@ -50,6 +53,7 @@
 
             </li>
         </ul>
+            </div>
 
     {% endfor %}
     {% endif %}

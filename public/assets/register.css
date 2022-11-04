@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 html {
     width: 100%;
@@ -11,10 +11,8 @@ html {
 body {
     padding: 0;
     margin: 0;
-    background-image: linear-gradient(to right top, #393ebe, #30369d, #292e7d, #22265f, #1c1d41);
-    font-family: 'Lato', sans-serif;
-    background-position: center;
-    background-repeat: repeat;
+    background: #0C0B10;
+    font-family: 'Raleway', sans-serif;
     background-size: cover;
 }
 
@@ -38,8 +36,7 @@ body {
     width: 680px;
     height: 750px;
     border-radius: 110px;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: #232227;
     color: white;
     display: block;
     justify-content: center;
@@ -49,19 +46,17 @@ body {
 .container-blur h1 {
     font-size: 85px;
     color: white;
-    font-weight: 300;
+    font-weight: 600;
     text-align: center;
-    margin-right: 40px;
     text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
 }
 
 .container-blur h2{
     color: #CFCFCF;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 23px;
     margin-bottom: 120px;
     margin-top: -60px;
-    margin-right: 80px;
     text-align: center;
     text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
 }
@@ -97,6 +92,7 @@ body {
     width: 200px;
     height: 50px;
     text-align: center;
+    cursor: pointer;
 }
 
 

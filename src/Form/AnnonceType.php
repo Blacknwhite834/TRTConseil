@@ -26,7 +26,7 @@ class AnnonceType extends AbstractType
                 ),
             ))
             ->add('description', TextType::class, array(
-                'label' => 'Déscription :',
+                'label' => 'Description :',
                 'attr' => array(
                     'placeholder' => 'Description du poste',
                 ),

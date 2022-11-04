@@ -59,7 +59,7 @@
                             </div></div></td>
                     <td>
                         <a class="btn" id="btn-1" href="{{ path('app_back_office_show', {'id': candidature.user.id }) }}">Voir le profil</a>
-                        <a class="btn" id="btn-1" href="{{ path('app_annonce_index') }}">Voir l'annonce liée</a>
+                        <a class="btn" id="btn-1" href="{{ path('app_annonce_show', {'id': candidature.annonce.id}) }}">Voir l'annonce liée</a>
                     </td>
                 </tr>
             {% else %}

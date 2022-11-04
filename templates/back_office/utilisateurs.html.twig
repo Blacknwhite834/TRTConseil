@@ -63,6 +63,7 @@
                             </div></div></td>
                     <td>
                         <a class="btn" id="btn-1" href="{{ path('app_back_office_show', {'id': user.id }) }}">Voir le profil</a>
+                        <a id="btn-delete{{ user.id }}" href="{{ path('app_back_office_utilisateurs_delete', {'id': user.id}) }}" data-id="{{ user.id }}">Delete</a>
                     </td>
                 </tr>
 
@@ -94,6 +95,29 @@
             $('.recruteur-items').show();
         });
     });
+
+    // delete script with confirm text :
+    $(document).ready(function(){
+
+        $('[data-id]').click(function(){
+            let text = confirm("Voulez-vous vraiment supprimer cet utilisateur ?");
+            if(confirm(text) === true){
+                let xmlhtpp = new XMLHttpRequest();
+
+                xmlhtpp.open("get", `/back-office/${this.dataset.id}/delete`)
+                xmlhtpp.send();
+            } else {
+                let xmlhtpp = new XMLHttpRequest();
+
+                xmlhtpp.open("get", `/back-office/utilisateurs`)
+                xmlhtpp.send();
+            }
+        });
+    });
+
+
+
+
     $(document).ready(function(){
         let activate = document.querySelectorAll('[name="toggle-1"]');
         for(let bouton of activate){
