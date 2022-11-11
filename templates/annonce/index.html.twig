@@ -93,5 +93,15 @@
 
         })
 
+        $(document).ready(function(){
+            $(".ham").click(function(){
+                if ($(".mobile-menu").css("display") === "none") {
+                    $(".mobile-menu").css("display", "block");
+                } else {
+                    $(".mobile-menu").css("display", "none");
+                }
+            });
+        });
+
     </script>
 {% endblock %}

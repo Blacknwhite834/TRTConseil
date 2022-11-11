@@ -129,15 +129,21 @@ tr.annonce {
         width: 40%;
     }
 
+
+
 }
 
-@media only screen and (max-width: 867px) {
+@media only screen and (max-width: 1115px) {
     .container-annonces h1 {
-        text-align: center;
-        margin: 0 auto;
+        margin-left: 90px;
+        margin-top: 0px;
     }
 
+
+
 }
+
+
 @media only screen and (max-width: 787px) {
     #btn-1 {
         display: block;
@@ -147,6 +153,32 @@ tr.annonce {
 @media only screen and (max-width: 651px) {
     tr.annonce {
         width: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        padding: 0 10px;
+    }
+
+    .container-annonces h1 {
+        text-align: center;
+        margin: 0px;
+    }
+
+    .annonce td {
+        margin-left: 0px;
+        width: auto;
+    }
+
+    form {
+        display: flex;
+        justify-content: center;
+        margin: 10px!important;
+    }
+
+    tbody {
+        gap: 0px;
     }
 
 
