@@ -106,7 +106,6 @@ class BackOfficeController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
 
-        $email = $this->getUser()->getEmail();
         return $this->redirectToRoute('app_back_office', [], Response::HTTP_SEE_OTHER);
     }
 

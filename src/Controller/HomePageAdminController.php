@@ -18,7 +18,7 @@ class HomePageAdminController extends AbstractController
     public function index(ManagerRegistry $doctrine, AnnonceRepository $annonceRepository, CandidatureRepository $candidatureRepository): Response
     {
 
-       if ($this->getUser()->getIsApproved() == false or $this->getUser()->isIsVerified() == false) {
+       if (!$this->getUser()->getIsApproved() or !$this->getUser()->isIsVerified()) {
             throw $this->createAccessDeniedException('not approved');
         }
 

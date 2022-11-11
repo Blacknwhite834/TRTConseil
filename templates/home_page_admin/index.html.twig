@@ -10,31 +10,32 @@
         <a href="{{ path('app_home_page')}}">
         <img src="{{ asset('./assets/images/logo-2.png') }}" id="logo-hide">
         </a>
-        <nav>
-            <div class="navbar">
-                <div class="container nav-container">
-                    <input class="checkbox" type="checkbox" name="" id="" />
-                    <div class="hamburger-lines">
-                        <span class="line line1"></span>
-                        <span class="line line2"></span>
-                        <span class="line line3"></span>
-                    </div>
+        <div class="hamMenu">
+            <svg class="ham hamRotate ham1" viewBox="0 0 100 100" width="80" onclick="this.classList.toggle('active')">
 
-                    <div class="menu-items">
-                        <li><a href="{{ path('app_home_page') }}">Home</a></li>
-                        <li><a href="{{ path('app_annonce_index') }}">Annonces</a></li>
-                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECRUTEUR') %}
-                        <li><a href="{{ path('app_annonce_new') }}">Publier</a></li>
-                        {% endif %}
-                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CONSULTANT') %}
-                        <li><a href="{{ path('app_back_office') }}">Back-office</a></li>
-                        {% endif %}
-                        <li><a href="{{ path('app_logout') }}">Log out</a></li>
-
-                    </div>
-                </div>
+                <path
+                        class="line top"
+                        d="m 30,33 h 40 c 0,0 9.044436,-0.654587 9.044436,-8.508902 0,-7.854315 -8.024349,-11.958003 -14.89975,-10.85914 -6.875401,1.098863 -13.637059,4.171617 -13.637059,16.368042 v 40" />
+                <path
+                        class="line middle"
+                        d="m 30,50 h 40" />
+                <path
+                        class="line bottom"
+                        d="m 30,67 h 40 c 12.796276,0 15.357889,-11.717785 15.357889,-26.851538 0,-15.133752 -4.786586,-27.274118 -16.667516,-27.274118 -11.88093,0 -18.499247,6.994427 -18.435284,17.125656 l 0.252538,40" />
+            </svg>
+        </div>
+        <div class="mobile-menu">
+            <div class="mobile-menu-items">
+                <li {% if app.request.attributes.get('_route') == 'app_home_page' %} class="active" {% endif %}><a href="{{ path('app_home_page') }}">Home</a></li>
+                <li {% if app.request.attributes.get('_route') == 'app_annonce_index' %} class="active" {% endif %}><a href="{{  path('app_annonce_index')}}">Annonces</a></li>
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECRUTEUR') %}
+                    <li {% if app.request.attributes.get('_route') == 'app_annonce_new' %} class="active" {% endif %}><a href="{{ path('app_annonce_new') }}">Publier</a></li>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CONSULTANT') %}
+                    <li {% if app.request.attributes.get('_route') == 'app_back_office'%} class="active" {% endif %}><a href="{{ path('app_back_office') }}">Back-office</a></li>
+                {% endif %}
             </div>
-        </nav>
+        </div>
         <div class="profile">
             <div class="flex-profile">
                 <img src="{{ asset('assets/images/live.png')}}" />
@@ -164,7 +165,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
 
-
+        $(document).ready(function(){
+            $(".ham").click(function(){
+                if ($(".mobile-menu").css("display") === "none") {
+                    $(".mobile-menu").css("display", "block");
+                } else {
+                    $(".mobile-menu").css("display", "none");
+                }
+            });
+        });
 
     </script>
 {% endblock %}
