@@ -113,7 +113,7 @@ table {
     border-collapse: collapse;
     color: #a8a8a8;
     width: 100%;
-    table-layout: fixed;
+    table-layout: initial;
 }
 
 table caption {
@@ -206,6 +206,21 @@ tr.annonce {
     font-weight: 400;
     margin-bottom: 20px;
     line-height: 1.5em;
+}
+
+.wrapper-bottom {
+    border-collapse: separate;
+    text-indent: initial;
+    width: auto;
+    border-spacing: 15px;
+    border-color: grey;
+}
+
+.wrapper-annonce {
+    display: inline-flex;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 
 

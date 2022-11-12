@@ -4,6 +4,7 @@
 {% block stylesheets%}
     <link href="{{ asset('assets/homepage.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/back-office.css') }}" rel="stylesheet">
+     <link href="{{ asset('assets/back-office_show.css') }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
     {{ block('homepage', 'home_page_admin/index.html.twig') }}
@@ -33,17 +34,35 @@
                 <tbody>
                 <tr>
 
-                    <td>{{ candidat.id }}</td>
-                    <td>{{ candidat.emailAdress }}</td>
-                    <td>{{ candidat.user.roles|json_encode}}</td>
-                    <td>{{ candidat.nom }}</td>
-                    <td>{{ candidat.prenom }}</td>
-                    <td><a href="{{ asset('uploads/images/' ~ candidat.cv ~ '')}}" download>CV</a></td>
-                    <td>{{ candidat.user.isVerified ? 'Yes' : 'No' }}</td>
-                    <td>{{ candidat.user.isApproved ? 'Yes' : 'No' }}</td>
+                    <td data-label="id">{{ candidat.id }}</td>
+                    <td data-label="Email">{{ candidat.emailAdress }}</td>
+                    <td data-label="Role">{{ candidat.user.roles|json_encode}}</td>
+                    <td data-label="Nom">{{ candidat.nom }}</td>
+                    <td data-label="Prenom">{{ candidat.prenom }}</td>
+                    <td data-label="CV"><a href="{{ asset('uploads/images/' ~ candidat.cv ~ '')}}" download>CV</a></td>
+                    {% if is_granted('ROLE_ADMIN')%}
+                        <td data-label="IsVerified"><div class="wrapper-switch"><div class="switch">
+                                    <input  type="checkbox" name="toggle-1" id="toggleAll-1 {{  candidat.user.id }}" {{ (candidat.user.isVerified) ? 'checked' : ''}} data-id="{{ candidat.user.id }}" /> <!--toggle switch-->
+                                    <label for="toggleAll-1 {{  candidat.user.id }}"></label>
+                                </div></div></td>
+                    {% else %}
+                        <td data-label="IsVerified">{{ candidat.user.isVerified ? 'Yes' : 'No' }}</td>
+                    {% endif %}
+                    <td data-label="IsApproved"><div class="wrapper-switch"><div class="switch">
+                                <input  type="checkbox"  name="toggle-2" id="toggleAll-2 {{  candidat.user.id }}" {{ (candidat.user.isApproved) ? 'checked' : ''}} data-id="{{  candidat.user.id }}" /> <!--toggle switch-->
+                                <label for="toggleAll-2 {{   candidat.user.id }}"></label>
+                            </div></div></td>
                 </tr>
                 </tbody>
             </table>
+            {% if is_granted('ROLE_ADMIN')%}
+        <div class="wrapper-edit">
+            <a>edit</a>
+            <a id="btn-delete{{ candidat.user.id }}" href="{{ path('app_back_office_utilisateurs_delete', {'id': candidat.user.id}) }}" data-id="{{ candidat.user.id }}">delete</a>
+            <div style="display: flex; justify-content: center">
+
+            </div>
+            {% endif %}
         {% endfor %}
             {% for recruteur in recruteur %}
         <table class="table-user">
@@ -61,36 +80,50 @@
             <tbody>
             <tr>
 
-                <td>{{ recruteur.id }}</td>
-                <td>{{ recruteur.emailAdress }}</td>
-                <td>{{ recruteur.user.roles|json_encode}}</td>
-                    <td>{{ recruteur.nom }}</td>
-                <td>{{ recruteur.adresse }}</td>
-                <td>{{ recruteur.user.isVerified ? 'Yes' : 'No' }}</td>
-                    <td>{{ recruteur.user.isApproved ? 'Yes' : 'No' }}</td>
+                <td data-label="id">{{ recruteur.id }}</td>
+                <td data-label="Email">{{ recruteur.emailAdress }}</td>
+                <td data-label="Role">{{ recruteur.user.roles|json_encode}}</td>
+                    <td data-label="Nom">{{ recruteur.nom }}</td>
+                <td data-label="Adresse">{{ recruteur.adresse }}</td>
+                {% if is_granted('ROLE_ADMIN')%}
+                <td data-label="IsVerified"><div class="wrapper-switch"><div class="switch">
+                            <input  type="checkbox" name="toggle-1" id="toggleAll-1 {{  recruteur.user.id }}" {{ (recruteur.user.isVerified) ? 'checked' : ''}} data-id="{{ recruteur.user.id }}" /> <!--toggle switch-->
+                            <label for="toggleAll-1 {{  recruteur.user.id }}"></label>
+                        </div></div></td>
+                {% else %}
+                    <td data-label="IsVerified">{{ recruteur.user.isVerified ? 'Yes' : 'No' }}</td>
+                    {% endif %}
+                <td data-label="IsApproved"><div class="wrapper-switch"><div class="switch">
+                            <input  type="checkbox"  name="toggle-2" id="toggleAll-2 {{  recruteur.user.id }}" {{ (recruteur.user.isApproved) ? 'checked' : ''}} data-id="{{  recruteur.user.id }}" /> <!--toggle switch-->
+                            <label for="toggleAll-2 {{   recruteur.user.id }}"></label>
+                        </div></div></td>
                 </tr>
             </tbody>
         </table>
-            {% endfor %}
-
-
+        {% if is_granted('ROLE_ADMIN')%}
         <div class="wrapper-edit">
             <a>edit</a>
-            <a>delete</a>
+            <a id="btn-delete{{ recruteur.user.id }}" href="{{ path('app_back_office_utilisateurs_delete', {'id': recruteur.user.id}) }}" data-id="{{ recruteur.user.id }}">delete</a>
             <div style="display: flex; justify-content: center">
 
             </div>
+            {% endif %}
+            {% endfor %}
+
+
         </div>
 
     </div>
+    <div>
    {% for recruteur in recruteur %} <h1 style="color: white">Annonce(s) associée(s)</h1>
    <h2 style="color: #8D8D8D;font-size: 21px;font-weight: 500;">Annonce(s) crée(s) par l'utilisateur</h2>
    {% endfor %}
     {% for candidat in candidat %} <h1 style="color: white">Candidature(s) associée(s)</h1>
         <h2 style="color: #8D8D8D;font-size: 21px;font-weight: 500;">Annonce(s) où l'utilisateur à postulé</h2>
     {% endfor %}
+<div class="wrapper-annonce" style="display: flex">
         {% for annonce in annonces %}
-        <table class="table-annonce">
+        <table class="wrapper-bottom">
             <tbody>
             <tr class="annonce">
                 <td id="annonce-title">{{ annonce.title }}</td>
@@ -116,14 +149,63 @@
             </td>
         </tr>
 
-    {% else %}
-        <tr>
-            <td colspan="5">no records found</td>
-        </tr>
+
         </tbody>
         </table>
     {% endfor %}
-
+</div>
+</div>
 
 </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function(){
+            $(".ham").click(function(){
+                if ($(".mobile-menu").css("display") === "none") {
+                    $(".mobile-menu").css("display", "block");
+                } else {
+                    $(".mobile-menu").css("display", "none");
+                }
+            });
+        });
+
+        $(document).ready(function(){
+        let activate = document.querySelectorAll('[name="toggle-1"]');
+        for(let bouton of activate){
+            bouton.addEventListener("click", function(){
+                let text = "Vous êtes sûr ?";
+                if (confirm(text) === true) {
+                    let xmlhtpp = new XMLHttpRequest();
+
+                    xmlhtpp.open("get", `/back-office/${this.dataset.id}/activate-permission1`)
+                    xmlhtpp.send();
+                } else {
+                    bouton.checked = !bouton.checked;
+                }
+            })
+
+        }
+
+        let activate2 = document.querySelectorAll('[name="toggle-2"]');
+        for(let bouton2 of activate2){
+            bouton2.addEventListener("click", function(){
+                let text = "Vous êtes sûr ?";
+                if (confirm(text) === true) {
+                    let xmlhtpp = new XMLHttpRequest();
+
+                    xmlhtpp.open("get", `/back-office/${this.dataset.id}/activate-permission2`)
+                    xmlhtpp.send();
+                } else {
+                    bouton2.checked = !bouton2.checked;
+                }
+            })
+
+        }
+        });
+
+    </script>
 {% endblock %}

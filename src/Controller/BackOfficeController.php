@@ -97,7 +97,7 @@ class BackOfficeController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/activate-permission1', name: 'app_back_office_permission2', methods: ['GET', 'POST'])]
+    #[Route('/{id}/activate-permission1', name: 'app_back_office_permission1', methods: ['GET', 'POST'])]
     public function permission(UserRepository $repository, ProfileCandidatRepository $candidatRepository, $id, EntityManagerInterface $entityManager): Response
     {
 

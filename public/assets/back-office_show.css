@@ -1,0 +1,20 @@
+@media screen and (max-width: 1420px) {
+    .wrapper-annonce table td {
+        border-bottom: none;
+        display: initial;
+        text-align: center;
+        font-size: initial;
+    }
+}
+
+@media screen and (max-width: 1155px) {
+    #annonce-description {
+        display: initial;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    tr.annonce {
+        width: 100%;
+    }
+}
