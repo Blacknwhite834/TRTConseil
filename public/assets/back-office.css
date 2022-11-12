@@ -110,7 +110,6 @@
 
 table {
     border: none;
-
     border-collapse: collapse;
     color: #a8a8a8;
     width: 100%;
@@ -255,14 +254,44 @@ tr.annonce {
     transition: 0.3s;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1710px) {
+    .sidenav {
+    display: none;
+    }
+
+    .main {
+        margin: 0px;
+    }
+
+    #logo-hide {
+        display: block;
+        position: absolute;
+        margin: 10px;
+        width: 100px;
+    }
+
+    #title {
+        padding: 0px;
+        margin: 0px;
+        line-height: normal;
+    }
+
+
+
+    .hamMenu {
+        display: flex;
+        margin-right: 0px;
+        align-content: center;
+        justify-content: flex-end;
+        align-items: flex-start;
+    }
+}
+
+@media screen and (max-width: 1420px) {
     table {
         border: 0;
     }
 
-    table caption {
-        font-size: 1.3em;
-    }
 
     table thead {
         border: none;
@@ -276,19 +305,19 @@ tr.annonce {
     }
 
     table tr {
-        border-bottom: 3px solid #ddd;
+
         display: block;
         margin-bottom: .625em;
     }
 
     table td {
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid #434345;
         display: block;
         font-size: .8em;
         text-align: right;
     }
 
-    table td::before {
+    table td:before{
         /*
         * aria-label has no advantage, it won't be read inside a table
         content: attr(aria-label);
@@ -301,5 +330,20 @@ tr.annonce {
 
     table td:last-child {
         border-bottom: 0;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .nav-bar {
+        justify-content: center;
+
+    }
+
+    .nav-bar a {
+        font-size: 4vw;
+    }
+
+    .wrapper-sort btn{
+        font-size: 4vw;
     }
 }

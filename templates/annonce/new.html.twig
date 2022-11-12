@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block body %}
-
+<div class="main">
             <div class="container-home">
                 {{ block('homepage', 'home_page_admin/index.html.twig') }}
             </div>
@@ -20,5 +20,22 @@
 
 
             </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
 
+        $(document).ready(function(){
+            $(".ham").click(function(){
+                if ($(".mobile-menu").css("display") === "none") {
+                    $(".mobile-menu").css("display", "block");
+                } else {
+                    $(".mobile-menu").css("display", "none");
+                }
+            });
+        });
+
+    </script>
 {% endblock %}

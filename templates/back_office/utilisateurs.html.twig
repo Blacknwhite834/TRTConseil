@@ -50,18 +50,18 @@
             <tbody>
             {% for user in user %}
                 <tr class="{{ (user.roles|json_encode == '["ROLE_CANDIDAT","ROLE_USER"]') ? 'candidat-items' : 'recruteur-items'}}">
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.roles|json_encode }}</td>
-                    <td><div class="wrapper-switch"><div class="switch">
+                    <td data-label="id">{{ user.id }}</td>
+                    <td data-label="Email">{{ user.email }}</td>
+                    <td data-label="Roles">{{ user.roles|json_encode }}</td>
+                    <td data-label="IsVerified"><div class="wrapper-switch"><div class="switch">
                                 <input  type="checkbox" name="toggle-1" id="toggleAll-1 {{  user.id }}" {{ (user.isVerified) ? 'checked' : ''}} data-id="{{ user.id }}" /> <!--toggle switch-->
                                 <label for="toggleAll-1 {{  user.id }}"></label>
                             </div></div></td>
-                    <td><div class="wrapper-switch"><div class="switch">
+                    <td data-label="IsApproved"><div class="wrapper-switch"><div class="switch">
                                 <input  type="checkbox"  name="toggle-2" id="toggleAll-2 {{  user.id }}" {{ (user.isApproved) ? 'checked' : ''}} data-id="{{ user.id }}" /> <!--toggle switch-->
                                 <label for="toggleAll-2 {{  user.id }}"></label>
                             </div></div></td>
-                    <td>
+                    <td data-label="Actions">
                         <a class="btn" id="btn-1" href="{{ path('app_back_office_show', {'id': user.id }) }}">Voir le profil</a>
                         <a id="btn-delete{{ user.id }}" href="{{ path('app_back_office_utilisateurs_delete', {'id': user.id}) }}" data-id="{{ user.id }}">Delete</a>
                     </td>
@@ -185,5 +185,15 @@
         });
 
     })
+
+    $(document).ready(function(){
+        $(".ham").click(function(){
+            if ($(".mobile-menu").css("display") === "none") {
+                $(".mobile-menu").css("display", "block");
+            } else {
+                $(".mobile-menu").css("display", "none");
+            }
+        });
+    });
 </script>
 {% endblock %}

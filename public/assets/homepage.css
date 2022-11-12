@@ -172,7 +172,7 @@ header {
     width: calc(100% - 5em);
     margin: 0 auto;
     box-sizing: border-box;
-    height: 650px;
+    height: auto;
     padding-left: 330px;
     display: flex;
     gap: 30px;
@@ -556,11 +556,7 @@ tr.annonce {
     }
 }
 
-@media only screen and (max-width: 1561px) {
-    .main-wrapper {
-        height: 700px;
-    }
-}
+
 
 @media only screen and (max-width: 1155px) {
 

@@ -30,18 +30,18 @@
             <tbody>
             {% for user in user %}
                 <tr>
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.roles|json_encode }}</td>
-                    <td><div class="wrapper-switch"><div class="switch">
+                    <td data-label="id">{{ user.id }}</td>
+                    <td data-label="email"> {{ user.email }}</td>
+                    <td data-label="roles">{{ user.roles|json_encode }}</td>
+                    <td data-label="IsVerified"><div class="wrapper-switch"><div class="switch">
                                 <input  type="checkbox" name="toggle-1" id="toggleAll-1 {{  user.id }}" {{ (user.isVerified) ? 'checked' : ''}} data-id="{{ user.id }}" /> <!--toggle switch-->
                                 <label for="toggleAll-1 {{  user.id }}"></label>
                             </div></div></td>
-                    <td><div class="wrapper-switch"><div class="switch">
+                    <td data-label="IsApproved"><div class="wrapper-switch"><div class="switch">
                                 <input  type="checkbox"  name="toggle-2" id="toggleAll-2 {{  user.id }}" {{ (user.isApproved) ? 'checked' : ''}} data-id="{{ user.id }}" /> <!--toggle switch-->
                                 <label for="toggleAll-2 {{  user.id }}"></label>
                             </div></div></td>
-                    <td>
+                    <td data-label="Actions">
                         <a class="btn" id="btn-1" href="{{ path('app_back_office_show', {'id': user.id }) }}">Voir le profil</a>
                     </td>
                 </tr>
@@ -70,16 +70,16 @@
             <tbody>
             {% for annonce in annonce %}
             <tr>
-                <td>{{ annonce.id }}</td>
-                <td>{{ annonce.email }}</td>
-                <td>{{ annonce.title }}</td>
-                <td>{{ annonce.lieu }}</td>
-                <td>{{ annonce.description }}</td>
-                <td><div class="wrapper-switch"><div class="switch">
+                <td data-label="id">{{ annonce.id }}</td>
+                <td data-label="Email">{{ annonce.email }}</td>
+                <td data-label="Titre">{{ annonce.title }}</td>
+                <td data-label="Lieu">{{ annonce.lieu }}</td>
+                <td data-label="Description">{{ annonce.description }}</td>
+                <td data-label="IsApproved"><div class="wrapper-switch"><div class="switch">
                             <input  type="checkbox"  name="toggle-3" id="toggleAll{{ annonce.id }}" {{ (annonce.isVerified) ? 'checked' : ''}} data-id="{{  annonce.id }}" /> <!--toggle switch-->
                             <label for="toggleAll{{ annonce.id }}"></label>
                         </div></div></td>
-                <td>
+                <td data-label="Actions">
                     <a class="btn" id="btn-1" href="{{ path('app_back_office_show', {'id': annonce.user.id }) }}">Voir le profil</a>
                     <a class="btn" id="btn-1" href="{{ path('app_annonce_show', {'id': annonce.id }) }}">Voir l'annonce</a>
                 </td>
@@ -107,15 +107,15 @@
             <tbody>
             {% for candidature in candidature %}
                 <tr>
-                    <td>{{ candidature.id }}</td>
-                    <td>{{ candidature.nom }}</td>
-                    <td>{{ candidature.prenom }}</td>
-                    <td><a href="{{ asset('uploads/images/' ~ candidature.cv ~ '')}}" download>CV</a></td>
-                    <td><div class="wrapper-switch"><div class="switch">
+                    <td data-label="id">{{ candidature.id }}</td>
+                    <td data-label="Nom">{{ candidature.nom }}</td>
+                    <td data-label="Prenom">{{ candidature.prenom }}</td>
+                    <td data-label="CV"><a href="{{ asset('uploads/images/' ~ candidature.cv ~ '')}}" download>CV</a></td>
+                    <td data-label="IsApproved"><div class="wrapper-switch"><div class="switch">
                                 <input  type="checkbox"  name="toggle-4" id="toggleAll{{ candidature.id }}" {{ (candidature.isVerified) ? 'checked' : ''}} data-id="{{  candidature.id }}" /> <!--toggle switch-->
                                 <label for="toggleAll{{ candidature.id }}"></label>
                             </div></div></td>
-                    <td>
+                    <td data-label="Actions">
                         <a class="btn" id="btn-1" href="{{ path('app_back_office_show', {'id': candidature.user.id }) }}">Voir le profil</a>
                         <a class="btn" id="btn-1" href="{{ path('app_annonce_index') }}">Voir l'annonce liée</a>
                     </td>
@@ -201,6 +201,14 @@
     });
 
 
-
+    $(document).ready(function(){
+        $(".ham").click(function(){
+            if ($(".mobile-menu").css("display") === "none") {
+                $(".mobile-menu").css("display", "block");
+            } else {
+                $(".mobile-menu").css("display", "none");
+            }
+        });
+    });
 </script>
 {% endblock %}

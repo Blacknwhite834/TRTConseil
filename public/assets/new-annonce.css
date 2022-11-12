@@ -10,9 +10,21 @@ html {
     font-family: 'Raleway', sans-serif;
 }
 
+.main {
+    margin-left: 300px;
+}
+
 .container-annonce h1 {
     font-size: 50px;
     margin-top: -90px;
+}
+
+.container-annonce {
+    margin-left: 0px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
 }
 
 .new-wrapper {
@@ -86,39 +98,36 @@ input::placeholder {
     color: grey;
 }
 
-@media only screen and (max-width: 1532px) {
-    .container-annonce {
-        margin-left: 470px;
-    }
-}
 
-@media only screen and (max-width: 1260px) {
-    .container-annonce {
-        margin-left: 400px;
-    }
-}
 
 @media only screen and (max-width: 1155px) {
-    .container-annonce {
-        margin: auto;
-        padding: 0;
-        display: flex;
-        width: 100%;
-        justify-content: center;
-
-    }
 
     .container-annonce h1 {
-        display: none;
+        margin-top: -45px;
+        text-align: center;
+        padding: 0px 10px;
     }
+
 
     button.btn {
         margin: 0 auto;
     }
+
+    .main {
+        margin: 0px;
+    }
 }
 
-@media only screen and (max-width: 357px) {
+@media only screen and (max-width: 750px) {
+
     .new-wrapper {
-        border-radius: 0px;
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 280px) {
+
+    .container-annonce h1 {
+        font-size: 17vw!important;
     }
 }

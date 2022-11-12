@@ -49,15 +49,15 @@
             <tbody>
             {% for candidature in candidature %}
                 <tr class="{{  (candidature.isVerified) ? 'approved-items' : 'not-approved-items' }}">
-                    <td>{{ candidature.id }}</td>
-                    <td>{{ candidature.nom }}</td>
-                    <td>{{ candidature.prenom }}</td>
-                    <td><a href="{{ asset('uploads/images/' ~ candidature.cv ~ '')}}" download>CV</a></td>
-                    <td><div class="wrapper-switch"><div class="switch">
+                    <td data-label="id">{{ candidature.id }}</td>
+                    <td data-label="Nom">{{ candidature.nom }}</td>
+                    <td data-label="Prenom">{{ candidature.prenom }}</td>
+                    <td data-label="CV"><a href="{{ asset('uploads/images/' ~ candidature.cv ~ '')}}" download>CV</a></td>
+                    <td data-label="IsApproved"><div class="wrapper-switch"><div class="switch">
                                 <input  type="checkbox"  name="toggle-4" id="toggleAll{{ candidature.id }}" {{ (candidature.isVerified) ? 'checked' : ''}} data-id="{{  candidature.id }}" /> <!--toggle switch-->
                                 <label for="toggleAll{{ candidature.id }}"></label>
                             </div></div></td>
-                    <td>
+                    <td data-label="Actions">
                         <a class="btn" id="btn-1" href="{{ path('app_back_office_show', {'id': candidature.user.id }) }}">Voir le profil</a>
                         <a class="btn" id="btn-1" href="{{ path('app_annonce_show', {'id': candidature.annonce.id}) }}">Voir l'annonce liée</a>
                     </td>
@@ -90,6 +90,16 @@
                 })
 
             }
+        });
+
+        $(document).ready(function(){
+            $(".ham").click(function(){
+                if ($(".mobile-menu").css("display") === "none") {
+                    $(".mobile-menu").css("display", "block");
+                } else {
+                    $(".mobile-menu").css("display", "none");
+                }
+            });
         });
         // Filter list script :
         $(document).ready(function(){

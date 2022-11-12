@@ -52,16 +52,16 @@
         <tbody>
         {% for annonce in annonce %}
             <tr class="{{ (annonce.isVerified) ? 'approved-items' : 'not-approved-items' }}">
-                <td>{{ annonce.id }}</td>
-                <td>{{ annonce.email }}</td>
-                <td>{{ annonce.title }}</td>
-                <td>{{ annonce.lieu }}</td>
-                <td>{{ annonce.description }}</td>
-                <td><div class="wrapper-switch"><div class="switch">
+                <td data-label="id">{{ annonce.id }}</td>
+                <td data-label="Email">{{ annonce.email }}</td>
+                <td data-label="Titre">{{ annonce.title }}</td>
+                <td data-label="Lieu">{{ annonce.lieu }}</td>
+                <td data-label="Description">{{ annonce.description }}</td>
+                <td data-label="IsApproved"><div class="wrapper-switch"><div class="switch">
                             <input  type="checkbox"  name="toggle-3" id="toggleAll{{ annonce.id }}" {{ (annonce.isVerified) ? 'checked' : ''}} data-id="{{  annonce.id }}" /> <!--toggle switch-->
                             <label for="toggleAll{{ annonce.id }}"></label>
                         </div></div></td>
-                <td >
+                <td data-label="Actions">
                     <a class="btn" id="btn-1" href="{{ path('app_back_office_show', {'id': annonce.user.id }) }}">Voir le profil</a>
                     <a class="btn" id="btn-1" href="{{ path('app_annonce_show', {'id': annonce.id }) }}">Voir l'annonce</a>
                 </td>
@@ -78,6 +78,16 @@
 {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
+
+        $(document).ready(function(){
+            $(".ham").click(function(){
+                if ($(".mobile-menu").css("display") === "none") {
+                    $(".mobile-menu").css("display", "block");
+                } else {
+                    $(".mobile-menu").css("display", "none");
+                }
+            });
+        });
         // Filter list script :
         $(document).ready(function(){
             $('#approved-btn').click(function(){
