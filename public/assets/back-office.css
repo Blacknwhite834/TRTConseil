@@ -116,6 +116,10 @@ table {
     table-layout: initial;
 }
 
+table:last-child {
+    margin-bottom: 100px;
+}
+
 table caption {
     font-size: 1.5em;
     margin: .5em 0 .75em;
@@ -224,7 +228,7 @@ tr.annonce {
 }
 
 
-/----------------------/
+/*----------------------*/
 
 .wrapper-switch {
     width: 100%;

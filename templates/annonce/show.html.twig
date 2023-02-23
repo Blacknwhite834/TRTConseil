@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Annonce{% endblock %}
+{% block title %}TRT Conseil | Voir Annonce{% endblock %}
 {% block stylesheets%}
     <link href="{{ asset('assets/homepage.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/show-annonce.css') }}" rel="stylesheet">
@@ -16,12 +16,15 @@
         <tbody>
 
             <tr>
+                <td>Titre</td>
                 <td id="annonce-title">{{ annonce.title }}</td>
             </tr>
             <tr>
+                <td>Lieu</td>
                 <td id="annonce-lieu">{{ annonce.lieu }}</td>
             </tr>
             <tr>
+                <td>Description</td>
                 <td id="annonce-description">{{ annonce.description }}</td>
             </tr>
 
@@ -30,18 +33,20 @@
     </table>
 
     <div class="links">
-        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECRUTEUR') or is_granted('ROLE_RECRUTEUR')%}
+        {% if is_granted('ROLE_ADMIN')%}
     {{ include('annonce/_delete_form.html.twig') }}
         {% endif %}
 
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CANDIDAT')%}
         <a href="{{ path('app_candidature', {'id': annonce.id}) }}" class="btn" id="btn-3">Postuler</a>
+        {% endif %}
     </div>
     </div>
 
-    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECRUTEUR') or is_granted('ROLE_RECRUTEUR')%}
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECRUTEUR')%}
             <div class="wrapper-right">
+        <h3>Candidatures</h3>
     {% for candidats in candidats %}
-        <h3>Candidature</h3>
         <div class="wrapper-candidature">
         <ul>
             <li>

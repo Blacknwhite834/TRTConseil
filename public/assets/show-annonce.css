@@ -12,7 +12,7 @@ html {
 .container-annonce-show h1 {
     font-size: 50px;
     color: white;
-    margin-left: 20px;
+    margin-left: 35px;
     margin-top: -80px;
 }
 
@@ -20,6 +20,7 @@ html {
     display: flex;
     gap: 50px;
     margin-top: 90px;
+    align-items: center;
 }
 
 tbody {
@@ -27,12 +28,10 @@ tbody {
 }
 
 .wrapper-show {
-    width: 50%;
     min-height: 100px;
     height: auto;
-
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-    border-radius: 48px;
+    border-radius: 22px;
     background-color: #232227;
 
 }
@@ -41,6 +40,7 @@ tbody {
     display: block;
     width: 85%;
     margin: 20px;
+    color: #bbbbbb;
 }
 
 .wrapper-show button {
@@ -68,7 +68,8 @@ tbody {
 
 .links {
     display: flex;
-    justify-content: center;
+    margin-left: 20px; 
+    margin-bottom: 10px;
 }
 
 #edit-btn {
@@ -119,8 +120,8 @@ tbody {
 
 
 #annonce-lieu {
-    color: #BFBFBF;
     font-size: 18px;
+    color: white;
 }
 
  #annonce-description {
@@ -132,7 +133,7 @@ tbody {
      line-height: 0;
      font-size: 20px;
      color: #bbbbbb;
-     margin: 35px;
+     margin: 30px 20px;
      text-align: left;
  }
 
@@ -141,7 +142,7 @@ tbody {
     height: auto;
     width: auto;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-    border-radius: 48px;
+    border-radius: 22px;
     background-color: #232227;
 
 }

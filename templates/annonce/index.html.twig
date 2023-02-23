@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Annonce index{% endblock %}
+{% block title %}TRT Conseil | Annonce{% endblock %}
 {% block stylesheets%}
     <link href="{{ asset('assets/homepage.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/index-annonce.css') }}" rel="stylesheet">
@@ -13,10 +13,22 @@
    <div class="container-annonces">
        {% for message in app.flashes('success') %}
            <div class="alert alert-success">
+           <div class="alert-text">
                {{ message }}
+            </div>
+            <span class="progress-bar"></span>
+           </div>
+       {% endfor %}
+       {% for message in app.flashes('error') %}
+           <div class="alert alert-success">
+           <div class="alert-text" style="color: rgb(219, 25, 25);">
+               {{ message }}
+            </div>
+            <span class="progress-bar"></span>
            </div>
        {% endfor %}
     <h1>Annonces</h1>
+    <div style="display: flex; gap: 30px;">
        <form  action="{{ path('app_annonce_index') }}" style="margin-left: 90px">
            <input
                    id="search"
@@ -25,10 +37,12 @@
                    class="form-control"
                    placeholder="Rechercher..."
                    aria-label="Search"
+                   autocomplete="off"
            />
        </form>
        <a href="{{path('app_annonce_index')}}" id="back-link" style="font-size: 20px;
-    font-weight: bold;">Retour à la liste</a></li>
+    font-weight: bold;">Retour à la liste</a>
+    </div>
     <table class="table">
         <tbody>
         {% for annonce in annonces %}
@@ -39,7 +53,7 @@
                 <td>
 
                     <a href="{{ path('app_annonce_show', {'id': annonce.id}) }}" class="btn" id="btn-1">Voir</a>
-                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CANDIDAT') %}
+                    {% if is_granted('ROLE_CANDIDAT') %}
                     <a href="{{ path('app_candidature', {'id': annonce.id}) }}" class="btn" id="btn-3">Postuler</a>
                     {% endif %}
                 </td>
@@ -59,7 +73,32 @@
 {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
+
+        //timeout flash message
+        $(document).ready(function(){
+            setTimeout(function() {
+                $('.alert').fadeOut('fast');
+            }, 3000);
+        });
+
+        // progress bar
+        $(document).ready(function(){
+            $(".alert").each(function(){
+                var $this = $(this);
+                var width = 0;
+                var id = setInterval(frame, 20);
+                function frame() {
+                    if (width >= 100) {
+                        clearInterval(id);
+                    } else {
+                        width++;
+                        $this.find(".progress-bar").css("width", width + "%");
+                    }
+                }
+            });
+        });
         // Live search script :
+
         $(document).ready(function() {
             $('#back-link').hide();
             var searchRequest = null;
@@ -102,6 +141,8 @@
                 }
             });
         });
+
+
 
     </script>
 {% endblock %}

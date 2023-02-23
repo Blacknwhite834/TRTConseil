@@ -96,13 +96,10 @@ class AnnonceController extends AbstractController
 
         $email = $this->getUser()->getEmail();
 
-
-
           //  $candidats = $doctrine->getRepository(Candidature::class);
            // $listCandidats = $candidats->findAll();
 
-
-
+        $candidatsVerified = $doctrine->getRepository(Candidature::class)->findBy(['is_verified' => true]);
 
 
         if (!$annonce->getIsVerified()) {
@@ -110,7 +107,7 @@ class AnnonceController extends AbstractController
         }
         return $this->render('annonce/show.html.twig', [
             'annonce' => $annonce,
-            'candidats' => $annonce->getCandidatures(),
+            'candidats' => $candidatsVerified,
             'email' => $email,
         ]);
     }

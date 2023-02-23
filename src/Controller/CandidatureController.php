@@ -48,8 +48,19 @@ class CandidatureController extends AbstractController
         $candidature->setAnnonce($annonce); // set the annonce_id in the Candidature
         $candidature->setUser($this->getUser()); // set the user_id in the Candidature
 
-        $entityManager->persist($candidature);
-        $entityManager->flush();
+        // check if the user has already applied for this job
+        $candidatureRepo = $doctrine->getRepository(Candidature::class,); // access to the repository of Candidature
+        $candidatureExist = $candidatureRepo->findOneBy([
+            'annonce' => $annonce,
+            'user' => $this->getUser()
+        ]);
+        if ($candidatureExist) {
+            $this->addFlash('error', 'Vous avez déjà postulé à cette offre !');
+            return $this->redirectToRoute('app_annonce_index', [], Response::HTTP_SEE_OTHER);
+        } else {
+            $entityManager->persist($candidature);
+            $entityManager->flush();
+        }
 
 
         $this->addFlash('success', 'Candidature envoyée !');

@@ -30,7 +30,7 @@ body {
     position: fixed;
     z-index: 1;
     top: 0;
-    border-radius: 0px 35px 35px 0px;
+    border-radius: 0px;
     left: 0;
     overflow-x: hidden;
 }
@@ -39,12 +39,7 @@ body {
     margin-top: 15px;
     width: 70%;
     height: 50px;
-    border-radius: 93px;
-    -webkit-transition: all 1s ease-out;
-    -moz-transition: all 1s ease-out;
-    -o-transition: all 1s ease-out;
-    -ms-transition: all 1s ease-out;
-    transition: all 1s ease-out;
+    transition: all 0.3s ease-out;
 
 }
 
@@ -55,25 +50,21 @@ body {
     text-decoration: none;
     list-style: none;
     margin-left: 20px;
-
 }
 
 
 
 .navlinks .active {
-    background: #233EBC;
     width: 70%;
     height: 50px;
-    border-radius: 93px;
+    border-right: 3px solid white;
 }
 
 
 
 .sidenav li:hover{
-    background: #233EBC;
     width: 70%;
     height: 50px;
-    border-radius: 93px;
 
 }
 
@@ -135,27 +126,20 @@ header {
     background-color: #232227;
     border-radius: 48px;
     width: auto;
-    height: 85px;
-
-}
-
-.profile img:first-child {
-    width: 25px;
-    height: 25px;
-    align-self: center;
+    height: 70px;
 
 }
 
 .profile img {
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     align-self: center;
 }
 
 .profile h1 {
     margin: 10px;
     color: white;
-    font-size: 23px;
+    font-size: 19px;
     font-weight: 300;
     text-align: center;
     align-self: center;
@@ -182,7 +166,7 @@ header {
     width: 60%;
     height: auto;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-    border-radius: 48px;
+    border-radius: 22px;
     background-color: #232227;
 
 }
@@ -212,7 +196,7 @@ header {
     flex-direction: column;
     margin-bottom: 42px;
     background-color: #232227;
-    border-radius: 40px;
+    border-radius: 22px;
     gap: 10px;
 }
 
@@ -259,7 +243,7 @@ header {
 
 .wrapper-1 .flex-1, .wrapper-1 .flex-2, .wrapper-1 .flex-3, .wrapper-1 .flex-4 {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-    border-radius: 48px;
+    border-radius: 22px;
     background-color: rgb(0, 0, 0);
     width: 49%;
     height: 50%;
@@ -372,7 +356,7 @@ header {
     width: 100%;
     height: auto;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-    border-radius: 48px;
+    border-radius: 22px;
     background-color: #232227;
 }
 
@@ -393,15 +377,15 @@ header {
 .wrapper-2 {
     width: 100%;
     height: 47%;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-    border-radius: 48px;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: rgb(0 0 0 / 16%) 0px 10px 36px 0px, rgb(0 0 0 / 6%) 0px 0px 0px 1px;
+    border-radius: 22px;
+    background-color: #232227;
 }
 
 .wrapper-2 p{
     color: #a8a8a8;
     margin-left: 40px;
+    margin-right: 40px;
 }
 
 .wrapper-2 h1 {
@@ -446,7 +430,7 @@ tbody {
 }
 
 tr.annonce {
-    border-radius: 48px;
+    border-radius: 22px;
     width: 40%;
     height: auto;
     margin: 20px;

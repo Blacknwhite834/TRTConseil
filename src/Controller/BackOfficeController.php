@@ -9,7 +9,9 @@ use App\Repository\ProfileCandidatRepository;
 use App\Repository\ProfileRecruteurRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Doctrine\ORM\Mapping\Id;
+
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,6 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/back-office')]
+#[Security('is_granted("ROLE_ADMIN") or is_granted("ROLE_CONSULTANT")', message: "Vous n'avez pas accès à cette page")]
 class BackOfficeController extends AbstractController
 {
     #[Route('/', name: 'app_back_office')]
@@ -55,11 +58,10 @@ class BackOfficeController extends AbstractController
     {
 
         // delete user
-       /* $user = $repository->find($id);
+        $user = $repository->find($id);
         $entityManager->remove($user);
         $entityManager->flush();
 
-        $email = $this->getUser()->getEmail();*/
         return $this->redirectToRoute('app_back_office_utilisateurs', [], Response::HTTP_SEE_OTHER);
     }
 

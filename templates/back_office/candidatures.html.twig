@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BackOfficeController!{% endblock %}
+{% block title %}TRT Conseil | Candidature{% endblock %}
 {% block stylesheets%}
     <link href="{{ asset('assets/homepage.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/back-office.css') }}" rel="stylesheet">
@@ -24,6 +24,7 @@
                     class="form-control"
                     placeholder="Rechercher..."
                     aria-label="Search"
+                    autocomplete="off"
             />
         </form>
         <div class="wrapper-sort">
