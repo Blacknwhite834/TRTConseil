@@ -42,6 +42,7 @@ class HomePageAdminController extends AbstractController
             ),
             'numberAnnonce' => $numberAnnonce,
             'numberCandidature' => $numberCandidature,
+            'title' => 'Dashboard',
         ]);
     }
 }

@@ -5,11 +5,14 @@
     <link href="assets/homepage.css" rel="stylesheet">
 {% endblock %}
 {% block body %}
+    <div class="main">
     {% block homepage %}
+    <div class="nav-header">
     <header>
-        <a href="{{ path('app_home_page')}}">
+        <a href="{{ path('app_home_page')}}" id="wrapper-logo-hide">
         <img src="{{ asset('./assets/images/logo-2.png') }}" id="logo-hide">
         </a>
+        <h1 id="title">{{ title }}</h1>
         <div class="hamMenu">
             <svg class="ham hamRotate ham1" viewBox="0 0 100 100" width="80" onclick="this.classList.toggle('active')">
 
@@ -43,6 +46,7 @@
             </div>
         </div>
     </header>
+    </div>
     <div class="sidenav">
         <img src="{{ asset('./assets/images/logo.png') }}" id="logo">
         <div class="navlinks">
@@ -65,9 +69,7 @@
         </div>
     </div>
         {% endblock %}
-    <h1 id="title">Dashboard</h1>
     <div class="main-wrapper">
-
             <div class="wrapper-left">
                 <h1>Annonces</h1>
                 <table>
@@ -155,6 +157,7 @@
                     </div>
                 {% endif %}
          </div>
+    </div>
     </div>
 {% endblock %}
 {% block javascripts %}

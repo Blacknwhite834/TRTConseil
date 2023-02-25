@@ -6,9 +6,8 @@
     <link href="{{ asset('assets/back-office.css') }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
-    {{ block('homepage', 'home_page_admin/index.html.twig') }}
     <div class="main">
-        <h1 id="title">Utilisateurs</h1>
+    {{ block('homepage', 'home_page_admin/index.html.twig') }}
         <div class="nav-bar">
             <a {% if app.request.attributes.get('_route') == 'app_back_office' %} class="a-active" {% endif %} href="{{ path('app_back_office') }}">All</a>
             <a {% if app.request.attributes.get('_route') == 'app_back_office_utilisateurs' %} class="a-active" {% endif %} href="{{ path('app_back_office_utilisateurs') }}">Utilisateurs</a>

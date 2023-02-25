@@ -7,10 +7,10 @@
     <link href="{{ asset('assets/index-annonce.css') }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
-
+<div class="main">
     {{ block('homepage', 'home_page_admin/index.html.twig') }}
-
    <div class="container-annonces">
+
        {% for message in app.flashes('success') %}
            <div class="alert alert-success">
            <div class="alert-text">
@@ -27,9 +27,9 @@
             <span class="progress-bar"></span>
            </div>
        {% endfor %}
-    <h1>Annonces</h1>
-    <div style="display: flex; gap: 30px;">
-       <form  action="{{ path('app_annonce_index') }}" style="margin-left: 90px">
+    
+    <div style="display: flex; gap: 30px; align-items: center;">
+       <form  action="{{ path('app_annonce_index') }}">
            <input
                    id="search"
                    type="search"
@@ -51,10 +51,12 @@
                 <td id="annonce-lieu">{{ annonce.lieu }}</td>
                 <td id="annonce-description">{{ annonce.description }}</td>
                 <td>
-
                     <a href="{{ path('app_annonce_show', {'id': annonce.id}) }}" class="btn" id="btn-1">Voir</a>
                     {% if is_granted('ROLE_CANDIDAT') %}
                     <a href="{{ path('app_candidature', {'id': annonce.id}) }}" class="btn" id="btn-3">Postuler</a>
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('app_annonce_delete', {'id': annonce.id}) }}" class="btn" id="btn-2">Delete</a>
                     {% endif %}
                 </td>
             </tr>
@@ -68,6 +70,7 @@
     </table>
 
 
+   </div>
    </div>
 {% endblock %}
 {% block javascripts %}

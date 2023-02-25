@@ -7,9 +7,8 @@
      <link href="{{ asset('assets/back-office_show.css') }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
-    {{ block('homepage', 'home_page_admin/index.html.twig') }}
 <div class="main">
-    <h1 id="title">Dashboard</h1>
+    {{ block('homepage', 'home_page_admin/index.html.twig') }}
     {% for candidat in candidat %}
         <td>{{ candidat.nom }}</td>
         <td>{{ candidat.prenom }}</td>

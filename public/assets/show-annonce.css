@@ -44,7 +44,6 @@ tbody {
 }
 
 .wrapper-show button {
-
     width: 110px;
     height: 35px;
     color: white;
@@ -59,6 +58,8 @@ tbody {
     margin-bottom: 20px;
     line-height: 1.5em;
     border: none;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .wrapper-show button:hover {
@@ -165,9 +166,11 @@ tbody {
 }
 
 .wrapper-right ul {
-    margin: 20px;
+    text-align: center;
     list-style: none;
     font-size: 20px;
+    margin: 0px;
+    padding: 5px;
 }
 
 @media only screen and (max-width: 1574px) {
@@ -178,6 +181,11 @@ tbody {
 }
 
 @media only screen and (max-width: 1155px) {
+
+
+    .main {
+        margin-left: 0px;
+    }
 
     .container-annonce-show{
         margin: 0 auto;

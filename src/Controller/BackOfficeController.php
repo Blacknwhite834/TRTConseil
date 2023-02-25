@@ -34,6 +34,7 @@ class BackOfficeController extends AbstractController
             'email' => $email,
             'user' => $repository->findAll(),
             'candidature' => $candidatureRepository->findAll(),
+            'title' => 'Back-office',
         ]);
     }
 
@@ -50,6 +51,7 @@ class BackOfficeController extends AbstractController
 
             'email' => $email,
             'user' => $search,
+            'title' => 'Utilisateurs',
         ]);
     }
 
@@ -80,6 +82,7 @@ class BackOfficeController extends AbstractController
 
             'email' => $email,
             'annonce' => $search2,
+            'title' => 'Annonces',
         ]);
     }
 
@@ -96,6 +99,7 @@ class BackOfficeController extends AbstractController
 
             'email' => $email,
             'candidature' => $search3,
+            'title' => 'Candidatures',
         ]);
     }
 
@@ -167,6 +171,7 @@ class BackOfficeController extends AbstractController
             'annonces' => $annonceRepository->findBy(['user' => $id]),
             'candidat' => $candidatRepository->findBy(['user' => $id]),
             'recruteur' => $recruteurRepository->findBy(['user' => $id]),
+            'title' => 'Profil',
 
         ]);
     }

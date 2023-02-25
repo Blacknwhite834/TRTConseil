@@ -85,10 +85,9 @@
 
 
 .nav-bar {
-
     display: flex;
     font-weight: 600;
-    margin-top: 75px;
+    margin-top: 20px;
 }
 
 .nav-bar a {
@@ -227,6 +226,23 @@ tr.annonce {
     flex-direction: row;
 }
 
+input[type="search" i] {
+    appearance: auto;
+    box-sizing: border-box;
+    padding: 1px 15px;
+    background: #232227;
+    box-shadow: rgb(0 0 0 / 16%) 0px 10px 36px 0px, rgb(0 0 0 / 6%) 0px 0px 0px 1px;
+    color: white;
+    height: 40px;
+    border: none;
+    font-size: 19px;
+    border-radius: 50px;
+}
+
+input[type="search" i]:focus {
+    outline: none;
+}
+
 
 /*----------------------*/
 
@@ -279,12 +295,11 @@ tr.annonce {
     }
 
     .main {
-        margin: 0px;
+        margin-left: 0px;
     }
 
     #logo-hide {
         display: block;
-        position: absolute;
         margin: 10px;
         width: 100px;
     }

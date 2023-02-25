@@ -37,6 +37,7 @@ class AnnonceController extends AbstractController
             return $this->render('annonce/index.html.twig', [
                 'annonces' => $search2,
                 'email' => $email,
+                'title' => 'Annonces',
             ]);
 
     }
@@ -64,6 +65,7 @@ class AnnonceController extends AbstractController
             'annonce' => $annonce,
             'form' => $form,
             'email' => $email,
+            'title' => 'Nouvelle annonce',
         ]);
     }
     #[Route('/{id}/edit', name: 'app_annonce_edit', methods: ['GET', 'POST'])]
@@ -84,6 +86,7 @@ class AnnonceController extends AbstractController
         return $this->renderForm('annonce/edit.html.twig', [
             'annonce' => $annonce,
             'form' => $form,
+            'title' => 'Editer l\'annonce',
         ]);
     }
 
@@ -109,6 +112,7 @@ class AnnonceController extends AbstractController
             'annonce' => $annonce,
             'candidats' => $candidatsVerified,
             'email' => $email,
+            'title' => 'Annonce',
         ]);
     }
 
