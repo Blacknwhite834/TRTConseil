@@ -82,9 +82,9 @@
                             <td id="annonce-lieu">{{ annonce.lieu }}</td>
                             <td id="annonce-description">{{ annonce.description }}</td>
                             <td>
-
+                                <div style="display: flex; justify-content: center;">
                                 <a href="{{ path('app_annonce_show', {'id': annonce.id}) }}" class="btn" id="btn-1">Voir</a>
-
+                                </div>
                             </td>
                         </tr>
 
@@ -95,7 +95,9 @@
                     {% endfor %}
                     </tbody>
                 </table>
+                <div style="display: flex; justify-content: center;">
                 <a href="{{ path('app_annonce_index') }}" id="btn-ann">Voir plus</a>
+                </div>
             </div>
 
             <div class="block-right">
