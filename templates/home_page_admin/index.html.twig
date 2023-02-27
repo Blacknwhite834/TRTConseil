@@ -13,6 +13,12 @@
         <img src="{{ asset('./assets/images/logo-2.png') }}" id="logo-hide">
         </a>
         <h1 id="title">{{ title }}</h1>
+        <div class="profile">
+            <div class="flex-profile">
+                  <h1>{{ email }}</h1>
+                <img src="{{ asset('assets/images/profile.png')}}" />
+            </div>
+        </div>
         <div class="hamMenu">
             <svg class="ham hamRotate ham1" viewBox="0 0 100 100" width="80" onclick="this.classList.toggle('active')">
 
@@ -40,12 +46,7 @@
                 <li><a href="{{ path('app_logout')}}">Log out</a></li>
             </div>
         </div>
-        <div class="profile">
-            <div class="flex-profile">
-                  <h1>{{ email }}</h1>
-                <img src="{{ asset('assets/images/profile.png')}}" />
-            </div>
-        </div>
+        
     </header>
     </div>
     <div class="sidenav">
@@ -109,7 +110,7 @@
 
 
                     </div>
-                {% if is_granted('ROLE_ADMIN') %}
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CONSULTANT')%}
                 <div class="wrapper-2-admin">
                     <div>
                         <div><canvas id="categories" height="190" width="400" style="margin-left: 20px; padding-top: 20px"></canvas></div>

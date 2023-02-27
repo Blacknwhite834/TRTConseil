@@ -58,7 +58,8 @@ class AnnonceController extends AbstractController
             $annonce->setUser($this->getUser());
             $entityManager->persist($annonce);
             $entityManager->flush();
-            return $this->redirectToRoute('app_annonce_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('post_added', 'Votre annonce a été ajoutée avec succès et sera publiée après vérification');
+            // return $this->redirectToRoute('app_annonce_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('annonce/new.html.twig', [

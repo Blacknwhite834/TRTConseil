@@ -9,16 +9,21 @@
 
 {% block body %}
 <div class="main">
+    {% for message in app.flashes('post_added') %}
+           <div class="alert alert-success">
+           <div class="alert-text" style="color: white">
+               {{ message }}
+            </div>
+            <span class="progress-bar"></span>
+           </div>
+       {% endfor %}
             <div class="container-home">
                 {{ block('homepage', 'home_page_admin/index.html.twig') }}
             </div>
             <div class="container-annonce">
-                 
                     <div class="new-wrapper">
                     {{ include('annonce/_form.html.twig') }}
                     </div>
-
-
             </div>
 </div>
 {% endblock %}
@@ -26,6 +31,30 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
+
+    //timeout flash message
+        $(document).ready(function(){
+            setTimeout(function() {
+                $('.alert').fadeOut('fast');
+            }, 3000);
+        });
+
+        // progress bar
+        $(document).ready(function(){
+            $(".alert").each(function(){
+                var $this = $(this);
+                var width = 0;
+                var id = setInterval(frame, 20);
+                function frame() {
+                    if (width >= 100) {
+                        clearInterval(id);
+                    } else {
+                        width++;
+                        $this.find(".progress-bar").css("width", width + "%");
+                    }
+                }
+            });
+        });
 
         $(document).ready(function(){
             $(".ham").click(function(){

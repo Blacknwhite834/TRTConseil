@@ -56,7 +56,7 @@
             </table>
             {% if is_granted('ROLE_ADMIN')%}
         <div class="wrapper-edit">
-            <a>edit</a>
+     
             <a id="btn-delete{{ candidat.user.id }}" href="{{ path('app_back_office_utilisateurs_delete', {'id': candidat.user.id}) }}" data-id="{{ candidat.user.id }}">delete</a>
             <div style="display: flex; justify-content: center">
 
@@ -101,7 +101,6 @@
         </table>
         {% if is_granted('ROLE_ADMIN')%}
         <div class="wrapper-edit">
-            <a>edit</a>
             <a id="btn-delete{{ recruteur.user.id }}" href="{{ path('app_back_office_utilisateurs_delete', {'id': recruteur.user.id}) }}" data-id="{{ recruteur.user.id }}">delete</a>
             <div style="display: flex; justify-content: center">
 
@@ -111,9 +110,7 @@
 
 
         </div>
-
     </div>
-    <div>
    {% for recruteur in recruteur %} <h1 style="color: white">Annonce(s) associée(s)</h1>
    <h2 style="color: #8D8D8D;font-size: 21px;font-weight: 500;">Annonce(s) crée(s) par l'utilisateur</h2>
    {% endfor %}
@@ -136,10 +133,11 @@
             </tbody>
             </table>
         {% endfor %}
+
     {% for candidature in candidature %}
-        <table class="table-annonce">
-        <tbody>
-        <tr class="annonce">
+         <table class="wrapper-bottom">
+            <tbody>
+            <tr class="annonce">
             <td id="annonce-title">{{ candidature.annonce.title}}</td>
             <td id="annonce-lieu">{{ candidature.annonce.lieu }}</td>
             <td id="annonce-description">{{ candidature.annonce.description }}</td>
@@ -147,15 +145,12 @@
                 <a href="{{ path('app_annonce_show', {'id': candidature.annonce.id}) }}" class="btn" id="btn-voir">Voir</a>
             </td>
         </tr>
-
-
         </tbody>
         </table>
     {% endfor %}
 </div>
 </div>
-
-</div>
+    </div>
 {% endblock %}
 {% block javascripts %}
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>

@@ -42,7 +42,7 @@
     </div>
     </div>
 
-    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECRUTEUR')%}
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECRUTEUR') or is_granted('ROLE_CONSULTANT')%}
             <div class="wrapper-right">
         <h3>Candidatures</h3>
     {% for candidats in candidats %}

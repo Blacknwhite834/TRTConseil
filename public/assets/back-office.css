@@ -179,7 +179,7 @@ table th {
 }
 
 tr.annonce {
-    border-radius: 48px;
+    border-radius: 22px;
     width: 433px;
     height: auto;
     margin: 0px;
@@ -322,6 +322,17 @@ input[type="search" i]:focus {
 }
 
 @media screen and (max-width: 1420px) {
+    
+    #logo-hide {
+        display: block;
+        margin: 10px;
+        width: 100px;
+    }
+
+    #wrapper-logo-hide {
+        display: block;
+    }
+    
     table {
         border: 0;
     }

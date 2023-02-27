@@ -63,7 +63,9 @@
                             </div></div></td>
                     <td data-label="Actions">
                         <a class="btn" id="btn-1" href="{{ path('app_back_office_show', {'id': user.id }) }}">Voir le profil</a>
+                        {% if is_granted('ROLE_ADMIN')%}
                         <a id="btn-delete{{ user.id }}" href="{{ path('app_back_office_utilisateurs_delete', {'id': user.id}) }}" data-id="{{ user.id }}">Delete</a>
+                        {% endif %}
                     </td>
                 </tr>
 

@@ -65,6 +65,7 @@
                 <td data-label="Actions">
                     <a class="btn" id="btn-1" href="{{ path('app_back_office_show', {'id': annonce.user.id }) }}">Voir le profil</a>
                     <a class="btn" id="btn-1" href="{{ path('app_annonce_show', {'id': annonce.id }) }}">Voir l'annonce</a>
+                    <a class="btn" id="btn-1" href="{{ path('app_annonce_delete', {'id': annonce.id }) }}">Supprimer</a>
                 </td>
             </tr>
         {% else %}

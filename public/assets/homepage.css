@@ -761,7 +761,6 @@ tr.annonce {
 }
 .hamRotate.active {
     transform: rotate(45deg);
-    position: absolute;
     z-index: 99!important;
     padding: 2px;
 }
@@ -935,6 +934,10 @@ tr.annonce {
 
     .main-wrapper {
         width: 93%;
+    }
+
+    #title {
+        font-size: 8vw;
     }
 
 
