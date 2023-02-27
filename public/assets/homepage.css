@@ -862,6 +862,10 @@ tr.annonce {
 
     }
 
+    .wrapper-2-admin {
+        margin-bottom: 50px;
+    }
+
     .wrapper-left  {
         display: flex;
         flex-direction: column;
@@ -885,7 +889,9 @@ tr.annonce {
         width: 100%;
     }
 
-   
+    tbody {
+        justify-content: center;
+    }
 
     .block-right .wrapper-1 h1 {
         text-align: center;

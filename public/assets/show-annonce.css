@@ -25,6 +25,11 @@ html {
 
 tbody {
     margin: 0 auto;
+    justify-content: flex-start;
+}
+
+.wrapper-right {
+    margin-bottom: 50px;
 }
 
 .wrapper-show {
