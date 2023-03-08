@@ -304,6 +304,10 @@ input[type="search" i]:focus {
         width: 100px;
     }
 
+    #wrapper-logo-hide {
+        display: block;
+    }
+
     #title {
         padding: 0px;
         margin: 0px;
