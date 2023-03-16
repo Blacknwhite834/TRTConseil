@@ -106,9 +106,6 @@ class AnnonceController extends AbstractController
         $candidatsVerified = $doctrine->getRepository(Candidature::class)->findBy(['is_verified' => true]);
 
 
-        if (!$annonce->getIsVerified()) {
-            throw $this->createNotFoundException();
-        }
         return $this->render('annonce/show.html.twig', [
             'annonce' => $annonce,
             'candidats' => $candidatsVerified,

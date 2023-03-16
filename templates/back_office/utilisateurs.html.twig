@@ -98,23 +98,26 @@
         });
     });
 
+
     // delete script with confirm text :
     $(document).ready(function(){
+        let deleteBtn = document.querySelectorAll('#btn-delete');
+        for(let bouton of deleteBtn){
+            bouton.addEventListener("click", function(){
+                let text = "Vous êtes sûr ?";
+                if (confirm(text) === true) {
+                    let xmlhtpp = new XMLHttpRequest();
 
-        $('[data-id]').click(function(){
-            let text = confirm("Voulez-vous vraiment supprimer cet utilisateur ?");
-            if(confirm(text) === true){
-                let xmlhtpp = new XMLHttpRequest();
+                    xmlhtpp.open("get", `/back-office/${this.dataset.id}/delete`)
+                    xmlhtpp.send();
+                } else {
+                    let xmlhtpp = new XMLHttpRequest();
 
-                xmlhtpp.open("get", `/back-office/${this.dataset.id}/delete`)
-                xmlhtpp.send();
-            } else {
-                let xmlhtpp = new XMLHttpRequest();
-
-                xmlhtpp.open("get", `/back-office/utilisateurs`)
-                xmlhtpp.send();
-            }
-        });
+                    xmlhtpp.open("get", `/back-office/utilisateurs`)
+                    xmlhtpp.send();
+                }
+            });
+        }
     });
 
 

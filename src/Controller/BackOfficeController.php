@@ -76,6 +76,8 @@ class BackOfficeController extends AbstractController
         );
 
 
+
+
         $email = $this->getUser()->getEmail();
         return $this->render('back_office/annonces.html.twig', [
             'controller_name' => 'BackOfficeController',
